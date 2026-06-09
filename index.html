@@ -730,6 +730,93 @@
     @media (max-width: 1100px) { .figures-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 750px)  { .figures-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px)  { .figures-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       DARK LORE FACTS
+    ============================================================ */
+    #lore { background: var(--bg); }
+
+    .lore-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .lore-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.4rem;
+      position: relative;
+      cursor: pointer;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .lore-card:hover { border-color: var(--gold-dim); }
+    .lore-card.revealed { border-color: var(--gold); }
+    .lore-stamp {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: var(--red-bright);
+      border: 3px solid var(--red-bright);
+      padding: 0.3em 0.6em;
+      text-transform: uppercase;
+      transform: rotate(-8deg);
+      display: block;
+      opacity: 0.85;
+      transition: opacity 0.35s, transform 0.35s;
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+    }
+    .lore-card.revealed .lore-stamp {
+      opacity: 0;
+      transform: rotate(-8deg) scale(2);
+    }
+    .lore-hint {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: rgba(200,169,110,0.35);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      pointer-events: none;
+    }
+    .lore-text {
+      position: absolute;
+      inset: 0;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.55;
+      opacity: 0;
+      transition: opacity 0.4s 0.1s;
+      background: rgba(200,169,110,0.04);
+    }
+    .lore-card.revealed .lore-text { opacity: 1; }
+    .lore-text-label {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    @media (max-width: 1000px) { .lore-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px)  { .lore-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 450px)  { .lore-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -1265,6 +1352,92 @@
           <div class="figure-title-tag">First Titan — Slave to the Royal Family</div>
           <p class="figure-arc">A slave girl who gained titan power. Served the royal family for 2,000 years out of love. Freed by Mikasa's final act of choosing herself over Eren.</p>
           <div class="figure-fate"><strong>Fate:</strong> Freed. Disappeared into dust.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK LORE FACTS -->
+  <section id="lore">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Top Secret</span>
+        <h2 class="section-header">Classified Intel</h2>
+        <p class="section-subtitle">// Click each file to declassify — You were never meant to know this</p>
+      </div>
+      <div class="lore-grid">
+
+        <div class="lore-card fade-in" id="lore1" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Curse of Ymir</span>Anyone who inherits one of the 9 titans has exactly 13 years left to live — the same lifespan Ymir had after gaining her power.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore2" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Redacted</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">The Walls</span>The three walls are made of millions of Colossal Titans hardened inside them. They are still alive, dormant, waiting for the Founding Titan's command.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore3" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Eren's First Cry</span>Eren could see his future memories from the very beginning. His crying in episode 1 was him seeing what he would become — the monster at the end of the story.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore4" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Redacted</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Ackerman Bloodline</span>Ackermans are products of titan science experiments. They unlock a warrior instinct when they choose someone to protect — that's why Mikasa is so devoted to Eren.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore5" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">The Spiked Wine</span>Zeke's spinal fluid was mixed into the wine distributed to the Paradis military. Eren triggered all of them at Shiganshina with a single scream.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore6" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Eyes Only</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Bypassing the Vow</span>The Founding Titan's true power requires royal blood — OR contact with a royal blood titan. Eren used Zeke's contact at Shiganshina to bypass Karl Fritz's vow of pacifism.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore7" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Pure Titans</span>Pure titans are all Eldians who were transformed. They mindlessly seek other titans to eat because they instinctively want to regain a human form.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore8" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Redacted</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">The Smile</span>The reason titans always smile is biological — the muscles that control the smile are the last to atrophy. It's not sinister. It's just biology.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore9" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Origin of Titans</span>Ymir Fritz was a slave girl who fell into a hole connected to the Source of All Organic Matter. She emerged as the first titan. All titan power descends from her.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore10" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Eyes Only</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Attack Titan's Gift</span>The Attack Titan's unique power is receiving memories from FUTURE inheritors. Every past wielder knew, vaguely, what future wielders would do.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore11" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Redacted</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">The Great Titan War</span>Marley kept 7 of the 9 titans by convincing Eldian noble families to defect from King Karl Fritz during the Great Titan War. Betrayal from within ended the Empire.</div>
+        </div>
+
+        <div class="lore-card fade-in" id="lore12" onclick="this.classList.toggle('revealed')">
+          <span class="lore-stamp">Classified</span>
+          <div class="lore-hint">[ click to reveal ]</div>
+          <div class="lore-text"><span class="lore-text-label">Karl Fritz's Vow</span>Karl Fritz made a vow renouncing war, binding the Founding Titan's power. Eren broke it because he's not of royal blood and doesn't carry the vow's restriction.</div>
         </div>
 
       </div>

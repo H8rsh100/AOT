@@ -911,6 +911,201 @@
       .size-chart { gap: 0.4rem; height: 300px; }
       .size-label { font-size: 0.42rem; }
     }
+
+    /* ============================================================
+       QUIZ SECTION
+    ============================================================ */
+    #quiz {
+      background:
+        linear-gradient(180deg, rgba(17,17,17,0.96) 0%, rgba(17,17,17,0.94) 100%),
+        repeating-linear-gradient(0deg,   transparent, transparent 39px, rgba(200,169,110,0.05) 39px, rgba(200,169,110,0.05) 40px),
+        repeating-linear-gradient(90deg,  transparent, transparent 39px, rgba(200,169,110,0.03) 39px, rgba(200,169,110,0.03) 40px),
+        var(--surface);
+    }
+    .quiz-wrap { max-width: 720px; margin: 0 auto; }
+    .quiz-question-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold-dim);
+      padding: 1.6rem;
+      margin-bottom: 1.2rem;
+      transition: border-color 0.3s;
+    }
+    .quiz-question-block.correct { border-left-color: #4a7c59; }
+    .quiz-question-block.wrong   { border-left-color: var(--red-bright); }
+    .q-num {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .q-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .q-option {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      padding: 0.65rem 1rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .q-option:hover { background: rgba(200,169,110,0.08); border-color: var(--gold-dim); }
+    .q-option.selected-correct {
+      background: rgba(74,124,89,0.18);
+      border-color: #4a7c59;
+      color: #7ec896;
+    }
+    .q-option.selected-wrong {
+      background: rgba(204,34,0,0.15);
+      border-color: var(--red-bright);
+      color: #ff6b4a;
+    }
+    .q-option.show-correct {
+      background: rgba(74,124,89,0.10);
+      border-color: #4a7c59;
+      color: #7ec896;
+    }
+    .q-option[disabled] { cursor: default; }
+    .quiz-submit {
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.2em;
+      padding: 0.9rem 3rem;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto 0;
+      transition: background 0.2s, transform 0.2s;
+      text-transform: uppercase;
+    }
+    .quiz-submit:hover { background: #d4b87a; transform: translateY(-2px); }
+    .quiz-submit:disabled { opacity: 0.5; cursor: default; }
+    .quiz-result {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--card);
+      border: 1px solid var(--gold);
+      margin-top: 2rem;
+      animation: fadeUp 0.6s ease;
+    }
+    .quiz-result.show { display: block; }
+    .result-score {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+    .result-rank {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      margin: 1rem 0 0.5rem;
+    }
+    .result-desc {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      line-height: 1.7;
+    }
+    .quiz-retry {
+      background: transparent;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      padding: 0.6rem 1.6rem;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+      text-transform: uppercase;
+    }
+    .quiz-retry:hover { background: rgba(200,169,110,0.1); border-color: var(--gold); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .footer-logo span {
+      border: 2px solid var(--gold);
+      padding: 0.05em 0.3em;
+    }
+    .footer-sub {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .footer-motto {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--gold-dim);
+      margin-bottom: 1.8rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: rgba(136,136,128,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -1618,6 +1813,157 @@
     </div>
   </section>
 
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Intel Test</span>
+        <h2 class="section-header">Test Your Intel</h2>
+        <p class="section-subtitle">// 10 Questions — Prove you know the truth beyond the walls</p>
+      </div>
+
+      <div class="quiz-wrap fade-in" id="quizWrap">
+
+        <div class="quiz-question-block" data-q="0">
+          <div class="q-num">Question 01 / 10</div>
+          <div class="q-text">How many years did Ymir Fritz serve the royal family after her death?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. 100 years</button>
+            <button class="q-option" data-i="1">B. 845 years</button>
+            <button class="q-option" data-i="2" data-correct>C. 2,000 years</button>
+            <button class="q-option" data-i="3">D. 13 years</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="1">
+          <div class="q-num">Question 02 / 10</div>
+          <div class="q-text">What titan did Armin Arlert inherit?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Founding Titan</button>
+            <button class="q-option" data-i="1">B. Attack Titan</button>
+            <button class="q-option" data-i="2">C. Armored Titan</button>
+            <button class="q-option" data-i="3" data-correct>D. Colossal Titan</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="2">
+          <div class="q-num">Question 03 / 10</div>
+          <div class="q-text">What is the Curse of Ymir?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Titan inheritors cannot feel pain</button>
+            <button class="q-option" data-i="1" data-correct>B. 13-year lifespan after inheriting a titan</button>
+            <button class="q-option" data-i="2">C. Titan powers cannot be transferred</button>
+            <button class="q-option" data-i="3">D. Eldians must serve the royal family</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="3">
+          <div class="q-num">Question 04 / 10</div>
+          <div class="q-text">Who is the true Founding Titan heir by royal bloodline?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Eren Yeager</button>
+            <button class="q-option" data-i="1">B. Zeke Yeager</button>
+            <button class="q-option" data-i="2" data-correct>C. Historia Reiss</button>
+            <button class="q-option" data-i="3">D. Rod Reiss</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="4">
+          <div class="q-num">Question 05 / 10</div>
+          <div class="q-text">What unique ability does the Attack Titan have?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Can harden its skin</button>
+            <button class="q-option" data-i="1">B. Controls pure titans with a scream</button>
+            <button class="q-option" data-i="2">C. Has infinite stamina</button>
+            <button class="q-option" data-i="3" data-correct>D. Receives memories from future inheritors</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="5">
+          <div class="q-num">Question 06 / 10</div>
+          <div class="q-text">What was mixed into the wine distributed to Paradis soldiers?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Eren's spinal fluid</button>
+            <button class="q-option" data-i="1">B. Marleyan poison</button>
+            <button class="q-option" data-i="2" data-correct>C. Zeke's spinal fluid</button>
+            <button class="q-option" data-i="3">D. Founding Titan serum</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="6">
+          <div class="q-num">Question 07 / 10</div>
+          <div class="q-text">How tall is the Colossal Titan?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. 15 meters</button>
+            <button class="q-option" data-i="1">B. 30 meters</button>
+            <button class="q-option" data-i="2" data-correct>C. 60 meters</button>
+            <button class="q-option" data-i="3">D. 100 meters</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="7">
+          <div class="q-num">Question 08 / 10</div>
+          <div class="q-text">Who killed Zeke Yeager?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. Eren Yeager</button>
+            <button class="q-option" data-i="1">B. Armin Arlert</button>
+            <button class="q-option" data-i="2">C. Mikasa Ackerman</button>
+            <button class="q-option" data-i="3" data-correct>D. Levi Ackerman</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="8">
+          <div class="q-num">Question 09 / 10</div>
+          <div class="q-text">What vow did Karl Fritz make that limited the Founding Titan?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0" data-correct>A. A vow renouncing war</button>
+            <button class="q-option" data-i="1">B. A vow of eternal service to Marley</button>
+            <button class="q-option" data-i="2">C. A vow never to use titan powers</button>
+            <button class="q-option" data-i="3">D. A vow to protect the walls forever</button>
+          </div>
+        </div>
+
+        <div class="quiz-question-block" data-q="9">
+          <div class="q-num">Question 10 / 10</div>
+          <div class="q-text">Why can Ackermans not have their memories wiped?</div>
+          <div class="q-options">
+            <button class="q-option" data-i="0">A. They are not Eldians</button>
+            <button class="q-option" data-i="1">B. They have royal blood</button>
+            <button class="q-option" data-i="2">C. They chose not to live inside the walls</button>
+            <button class="q-option" data-i="3" data-correct>D. They are products of titan science, not pure Eldians</button>
+          </div>
+        </div>
+
+        <button class="quiz-submit" id="quizSubmit" disabled>[ Submit Intel ]</button>
+
+        <div class="quiz-result" id="quizResult">
+          <div class="result-score" id="resultScore"></div>
+          <div class="result-rank" id="resultRank"></div>
+          <div class="result-desc" id="resultDesc"></div>
+          <button class="quiz-retry" onclick="resetQuiz()">[ Retry Mission ]</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span>SNK</span> Archive</div>
+    <p class="footer-sub">[ Classified — Paradis Island Intelligence Division ]</p>
+    <p class="footer-motto">"Dedicate Your Heart."</p>
+    <nav class="footer-links">
+      <a href="#history">History</a>
+      <a href="#titans">Titans</a>
+      <a href="#factions">Factions</a>
+      <a href="#figures">Figures</a>
+      <a href="#lore">Lore</a>
+      <a href="#sizes">Scale</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <p class="footer-copy">SNK Archive — Classified — Year 854 — All intel for educational purposes</p>
+  </footer>
+
   <script>
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
@@ -1672,6 +2018,76 @@
         a.classList.toggle('active', a.getAttribute('href') === '#' + current);
       });
     });
+
+    // ============================================================
+    // QUIZ LOGIC
+    // ============================================================
+    const answers = {};
+    const totalQ = 10;
+
+    function initQuiz() {
+      document.querySelectorAll('.q-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const block = this.closest('.quiz-question-block');
+          const q = block.dataset.q;
+          if (answers[q] !== undefined) return; // already answered
+          const correct = !!this.dataset.correct;
+          answers[q] = correct;
+          // Mark options
+          block.querySelectorAll('.q-option').forEach(b => {
+            b.disabled = true;
+            if (b.dataset.correct) b.classList.add('show-correct');
+          });
+          this.classList.remove('show-correct');
+          this.classList.add(correct ? 'selected-correct' : 'selected-wrong');
+          block.classList.add(correct ? 'correct' : 'wrong');
+          // Enable submit if all answered
+          if (Object.keys(answers).length === totalQ) {
+            document.getElementById('quizSubmit').disabled = false;
+          }
+        });
+      });
+
+      document.getElementById('quizSubmit').addEventListener('click', function() {
+        const score = Object.values(answers).filter(Boolean).length;
+        const result = document.getElementById('quizResult');
+        document.getElementById('resultScore').textContent = score + ' / ' + totalQ;
+        let rank, desc;
+        if (score <= 3) {
+          rank = 'Civilian';
+          desc = 'You know nothing beyond the walls.\nYour memories may have been wiped.';
+        } else if (score <= 6) {
+          rank = 'Garrison Soldier';
+          desc = 'You\'ve read the basics.\nYou can hold a wall, but not much else.';
+        } else if (score <= 8) {
+          rank = 'Survey Corps';
+          desc = 'You\'ve been beyond the walls.\nYou carry the truth with you.';
+        } else {
+          rank = 'Humanity\'s Strongest';
+          desc = 'You know the truth of this world.\nDedicate your heart.';
+        }
+        document.getElementById('resultRank').textContent = rank;
+        document.getElementById('resultDesc').textContent = desc;
+        result.classList.add('show');
+        this.disabled = true;
+        result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    initQuiz();
+
+    function resetQuiz() {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      document.querySelectorAll('.quiz-question-block').forEach(block => {
+        block.classList.remove('correct', 'wrong');
+        block.querySelectorAll('.q-option').forEach(b => {
+          b.disabled = false;
+          b.classList.remove('selected-correct', 'selected-wrong', 'show-correct');
+        });
+      });
+      document.getElementById('quizSubmit').disabled = true;
+      document.getElementById('quizResult').classList.remove('show');
+      window.scrollTo({ top: document.getElementById('quiz').offsetTop - 100, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>

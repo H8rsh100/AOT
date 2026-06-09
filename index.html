@@ -190,32 +190,18 @@
       overflow: hidden;
       padding: 0;
       background:
-        radial-gradient(ellipse at center, rgba(139,26,26,0.08) 0%, transparent 60%),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.015) 0px,
-          rgba(255,255,255,0.015) 1px,
-          transparent 1px,
-          transparent 40px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          rgba(255,255,255,0.015) 0px,
-          rgba(255,255,255,0.015) 1px,
-          transparent 1px,
-          transparent 40px
-        ),
-        linear-gradient(180deg, #080808 0%, #0d0808 60%, #080808 100%);
+        linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.95) 100%),
+        url('bg_hero.png') center/cover no-repeat;
     }
-    /* CSS-only fog / particle layer */
+    /* Fog + grain overlay */
     #hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 80%, rgba(200,169,110,0.04) 0%, transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(139,26,26,0.06) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(200,169,110,0.02) 0%, transparent 70%);
+        radial-gradient(circle at 20% 80%, rgba(200,169,110,0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(139,26,26,0.10) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(200,169,110,0.03) 0%, transparent 70%);
       animation: fogDrift 12s ease-in-out infinite alternate;
       pointer-events: none;
     }
@@ -326,7 +312,11 @@
     /* ============================================================
        HISTORY TIMELINE
     ============================================================ */
-    #history { background: var(--bg); }
+    #history {
+      background:
+        linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.82) 50%, rgba(8,8,8,0.94) 100%),
+        url('bg_history.png') center/cover no-repeat fixed;
+    }
 
     .timeline-wrap {
       position: relative;
@@ -437,7 +427,11 @@
     /* ============================================================
        NINE TITANS SECTION
     ============================================================ */
-    #titans { background: var(--surface); }
+    #titans {
+      background:
+        linear-gradient(180deg, rgba(17,17,17,0.90) 0%, rgba(17,17,17,0.84) 50%, rgba(17,17,17,0.94) 100%),
+        url('bg_titans.png') center 30%/cover no-repeat fixed;
+    }
 
     .titans-grid {
       display: grid;
@@ -574,7 +568,11 @@
     /* ============================================================
        FACTIONS SECTION
     ============================================================ */
-    #factions { background: var(--bg); }
+    #factions {
+      background:
+        linear-gradient(180deg, rgba(8,8,8,0.87) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.93) 100%),
+        url('bg_factions.png') center/cover no-repeat fixed;
+    }
 
     .factions-grid {
       display: grid;
@@ -734,7 +732,11 @@
     /* ============================================================
        DARK LORE FACTS
     ============================================================ */
-    #lore { background: var(--bg); }
+    #lore {
+      background:
+        linear-gradient(180deg, rgba(8,8,8,0.86) 0%, rgba(8,8,8,0.78) 50%, rgba(8,8,8,0.93) 100%),
+        url('bg_lore.png') center/cover no-repeat fixed;
+    }
 
     .lore-grid {
       display: grid;

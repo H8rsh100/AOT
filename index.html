@@ -649,7 +649,11 @@
     /* ============================================================
        KEY FIGURES SECTION
     ============================================================ */
-    #figures { background: var(--surface); }
+    #figures {
+      background:
+        linear-gradient(180deg, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.82) 50%, rgba(17,17,17,0.94) 100%),
+        url('bg_figures.png') center 20%/cover no-repeat fixed;
+    }
 
     .figures-grid {
       display: grid;

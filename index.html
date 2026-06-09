@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNK Archive — AoT Lore Encyclopedia</title>
+  <meta name="description" content="A classified military archive of Attack on Titan lore. Explore 2,000 years of Eldian history, the Nine Titans, key figures, factions, and the truth beyond the walls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — TOKENS & RESET
+    ============================================================ */
+    :root {
+      --bg:          #080808;
+      --surface:     #111111;
+      --card:        #181818;
+      --border:      #2a2a2a;
+      --gold:        #C8A96E;
+      --gold-dim:    #8a7248;
+      --red:         #8B1A1A;
+      --red-bright:  #CC2200;
+      --text:        #E8E0D0;
+      --muted:       #888880;
+      --green:       #4a7c59;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Source Serif 4', serif;
+      --font-mono:    'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--bg); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-header {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+    .section-header::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-top: 0.3rem;
+      width: 60%;
+    }
+    .section-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    .classified-stamp {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--red-bright);
+      border: 1px solid var(--red-bright);
+      padding: 2px 8px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transform: rotate(-2deg);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    #navbar.scrolled {
+      background: rgba(8, 8, 8, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-decoration: none;
+      position: relative;
+    }
+    .nav-logo span {
+      display: inline-block;
+      border: 2px solid var(--gold);
+      padding: 0.05em 0.3em;
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--red-bright);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    /* ============================================================
+       SECTION WRAPPERS
+    ============================================================ */
+    section {
+      padding: 7rem 0;
+    }
+    section:nth-child(even) {
+      background: var(--surface);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo"><span>SNK</span></a>
+    <ul class="nav-links">
+      <li><a href="#history" id="nav-history">HISTORY</a></li>
+      <li><a href="#titans" id="nav-titans">TITANS</a></li>
+      <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
+      <li><a href="#figures" id="nav-figures">FIGURES</a></li>
+      <li><a href="#lore" id="nav-lore">LORE</a></li>
+      <li><a href="#quiz" id="nav-quiz">QUIZ</a></li>
+    </ul>
+  </nav>
+
+  <!-- SECTIONS WILL BE ADDED BELOW -->
+  <div id="app"></div>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Intersection Observer for fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 200) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+</body>
+</html>

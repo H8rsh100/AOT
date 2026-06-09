@@ -570,6 +570,83 @@
       .titans-grid { grid-template-columns: 1fr; }
       .titan-card { height: auto; }
     }
+
+    /* ============================================================
+       FACTIONS SECTION
+    ============================================================ */
+    #factions { background: var(--bg); }
+
+    .factions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .faction-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .faction-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--faction-color, var(--gold));
+    }
+    .faction-card::after {
+      content: var(--faction-icon, '');
+      position: absolute;
+      bottom: -0.5rem; right: 1rem;
+      font-size: 5rem;
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .faction-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .faction-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--faction-color, var(--gold));
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      border: 1px solid var(--faction-color, var(--gold));
+      padding: 2px 8px;
+      opacity: 0.8;
+    }
+    .faction-name {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+    .faction-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .faction-motto {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--faction-color, var(--gold));
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+    @media (max-width: 900px) { .factions-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 600px) { .factions-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -947,6 +1024,62 @@
               <div class="back-row"><div class="back-row-label">Fate</div><div class="back-row-val">Lara Tybur consumed by Eren Yeager during the Raid on Liberio, Year 854.</div></div>
             </div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTIONS -->
+  <section id="factions">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Active Threat</span>
+        <h2 class="section-header">Powers at War</h2>
+        <p class="section-subtitle">// Alliance Intelligence Files — Know Your Enemy</p>
+      </div>
+      <div class="factions-grid">
+
+        <div class="faction-card fade-in" style="--faction-color:#C8A96E; --faction-icon:'⚔'">
+          <div class="faction-tag">Paradis</div>
+          <div class="faction-name">Survey Corps</div>
+          <p class="faction-desc">Humanity's scouts. Venture beyond the walls with the lowest survival rate of any branch. Erwin Smith and then Hange Zoë commanded. Levi Ackerman's squad. They carried the truth when no one else dared look for it.</p>
+          <div class="faction-motto">"Dedicate Your Heart."</div>
+        </div>
+
+        <div class="faction-card fade-in" style="--faction-color:#888880; --faction-icon:'🛡'">
+          <div class="faction-tag">Paradis</div>
+          <div class="faction-name">Military Police</div>
+          <p class="faction-desc">Serve the king inside Wall Sina. The most corrupt branch. Only the top 10 graduates earn entry — and most abuse it. Sheltered, privileged, and ultimately irrelevant when the walls came down.</p>
+          <div class="faction-motto">"Guard the crown."</div>
+        </div>
+
+        <div class="faction-card fade-in" style="--faction-color:#6b8f71; --faction-icon:'🏰'">
+          <div class="faction-tag">Paradis</div>
+          <div class="faction-name">Garrison Regiment</div>
+          <p class="faction-desc">Defend and maintain the walls. The largest military branch. Most soldiers never see real combat. When the walls fell, many broke. A few, like Dot Pixis, stood and held.</p>
+          <div class="faction-motto">"Hold the line."</div>
+        </div>
+
+        <div class="faction-card fade-in" style="--faction-color:#8B1A1A; --faction-icon:'⚡'">
+          <div class="faction-tag">Marley</div>
+          <div class="faction-name">Marley Warriors</div>
+          <p class="faction-desc">Eldian children selected by Marley to inherit titan powers and serve as weapons. Reiner, Bertholdt, Annie, Zeke, Pieck, Porco. Promised honor and citizenship. Given trauma and impossible choices.</p>
+          <div class="faction-motto">"For Marley. For the world."</div>
+        </div>
+
+        <div class="faction-card fade-in" style="--faction-color:#CC2200; --faction-icon:'🔥'">
+          <div class="faction-tag">Paradis — Extremist</div>
+          <div class="faction-name">Yeagerists</div>
+          <p class="faction-desc">Eren's radical followers. Believe in Paradis' freedom through total annihilation of the outside world. Floch Forster led ground operations. Born from desperation, they became the thing they feared.</p>
+          <div class="faction-motto">"Eren leads. We follow."</div>
+        </div>
+
+        <div class="faction-card fade-in" style="--faction-color:#a08050; --faction-icon:'👑'">
+          <div class="faction-tag">Marley — Noble</div>
+          <div class="faction-name">Tybur Family</div>
+          <p class="faction-desc">Nobles who held the War Hammer Titan for generations. Controlled Marley's narrative about Eldians being devils. Willy Tybur's declaration of war on Paradis triggered the global alliance against Eren.</p>
+          <div class="faction-motto">"We write the story of the world."</div>
         </div>
 
       </div>

@@ -2038,12 +2038,12 @@
           const block = this.closest('.quiz-question-block');
           const q = block.dataset.q;
           if (answers[q] !== undefined) return; // already answered
-          const correct = !!this.dataset.correct;
+          const correct = this.hasAttribute('data-correct');
           answers[q] = correct;
           // Mark options
           block.querySelectorAll('.q-option').forEach(b => {
             b.disabled = true;
-            if (b.dataset.correct) b.classList.add('show-correct');
+            if (b.hasAttribute('data-correct')) b.classList.add('show-correct');
           });
           this.classList.remove('show-correct');
           this.classList.add(correct ? 'selected-correct' : 'selected-wrong');

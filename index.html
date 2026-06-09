@@ -647,6 +647,89 @@
     }
     @media (max-width: 900px) { .factions-grid { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 600px) { .factions-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       KEY FIGURES SECTION
+    ============================================================ */
+    #figures { background: var(--surface); }
+
+    .figures-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+    .figure-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--affil-color, var(--gold));
+      padding: 1.4rem;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+    .figure-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+    }
+    .figure-affil {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--affil-color, var(--gold));
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .figure-affil::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--affil-color, var(--gold));
+      flex-shrink: 0;
+    }
+    .figure-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+    .figure-title-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+    }
+    .figure-arc {
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+      opacity: 0.85;
+    }
+    .figure-fate {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.6rem;
+      text-transform: uppercase;
+    }
+    .figure-fate strong {
+      color: var(--affil-color, var(--gold));
+    }
+    @media (max-width: 1100px) { .figures-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 750px)  { .figures-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px)  { .figures-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -1080,6 +1163,108 @@
           <div class="faction-name">Tybur Family</div>
           <p class="faction-desc">Nobles who held the War Hammer Titan for generations. Controlled Marley's narrative about Eldians being devils. Willy Tybur's declaration of war on Paradis triggered the global alliance against Eren.</p>
           <div class="faction-motto">"We write the story of the world."</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FIGURES -->
+  <section id="figures">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Personnel Files</span>
+        <h2 class="section-header">The Soldiers</h2>
+        <p class="section-subtitle">// Confidential Dossiers — Key Personnel Records</p>
+      </div>
+      <div class="figures-grid">
+
+        <div class="figure-card fade-in" style="--affil-color:#CC2200">
+          <div class="figure-affil">Survey Corps → Yeagerists</div>
+          <div class="figure-name">Eren Yeager</div>
+          <div class="figure-title-tag">The Rumbling — Subject Zero</div>
+          <p class="figure-arc">Went from wanting freedom to becoming the monster he hated. Chose genocide to save his friends — and decided the choice alone.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Killed by Mikasa.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#C8A96E">
+          <div class="figure-affil">Survey Corps</div>
+          <div class="figure-name">Mikasa Ackerman</div>
+          <div class="figure-title-tag">Ackerman — Elite Soldier</div>
+          <p class="figure-arc">Devoted her entire existence to protecting Eren. Had to be the one to end him. Carried that grief for the rest of her life.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Visited Eren's grave for years.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#C8A96E">
+          <div class="figure-affil">Survey Corps</div>
+          <div class="figure-name">Armin Arlert</div>
+          <div class="figure-title-tag">Colossal Titan — Strategist</div>
+          <p class="figure-arc">The strategist. Sacrificed his innocence for humanity. Inherited the Colossal Titan from Bertholdt and carried the weight of that decision.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Became a peace ambassador.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#C8A96E">
+          <div class="figure-affil">Survey Corps</div>
+          <div class="figure-name">Levi Ackerman</div>
+          <div class="figure-title-tag">Humanity's Strongest</div>
+          <p class="figure-arc">Lost almost everyone he ever cared about. Kept fighting anyway. Killed Zeke. Nearly died twice. Never broke.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Lost two fingers and an eye.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#C8A96E">
+          <div class="figure-affil">Survey Corps — Commander</div>
+          <div class="figure-name">Erwin Smith</div>
+          <div class="figure-title-tag">Commander — Survey Corps</div>
+          <p class="figure-arc">Bet everything on the truth of history. Sacrificed himself and his entire corps for the charge at Shiganshina. Died never knowing if it was worth it.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Died at Shiganshina. Levi chose Armin over him.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#C8A96E">
+          <div class="figure-affil">Survey Corps — Commander</div>
+          <div class="figure-name">Hange Zoë</div>
+          <div class="figure-title-tag">Commander — Titan Researcher</div>
+          <p class="figure-arc">Titan obsessive turned commander. Held the alliance together in the final arc. Chose to slow down the Wall Titans to buy seconds for the living.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Self-sacrificed to slow the Rumbling's titans.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#8B1A1A">
+          <div class="figure-affil">Marley Warriors</div>
+          <div class="figure-name">Reiner Braun</div>
+          <div class="figure-title-tag">Armored Titan — Warrior</div>
+          <p class="figure-arc">Broke under the weight of being both a warrior and someone who loved the people he was supposed to destroy. Survived when he didn't want to.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Lives with guilt.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#8B1A1A">
+          <div class="figure-affil">Marley Warriors</div>
+          <div class="figure-name">Zeke Yeager</div>
+          <div class="figure-title-tag">Beast Titan — Warchief</div>
+          <p class="figure-arc">Believed Eldians should stop reproducing. Manipulated Eren for years with his euthanasia plan. Was manipulated back. Spent eternity in the Paths.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Killed by Levi Ackerman.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#8B1A1A">
+          <div class="figure-affil">Marley Warriors</div>
+          <div class="figure-name">Annie Leonhart</div>
+          <div class="figure-title-tag">Female Titan — Warrior</div>
+          <p class="figure-arc">Cold, trained killer who still had one person she cared about — her father. Spent years in a crystal cocoon. Emerged with the world changed beyond recognition.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Reunited with her father.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#4a7c59">
+          <div class="figure-affil">Survey Corps → Queen</div>
+          <div class="figure-name">Historia Reiss</div>
+          <div class="figure-title-tag">True Heir — Queen of Paradis</div>
+          <p class="figure-arc">True heir to the Founding Titan by royal blood. Chose humanity over power. Became queen. One of the few people Eren truly trusted.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Survived. Queen of Paradis.</div>
+        </div>
+
+        <div class="figure-card fade-in" style="--affil-color:#888880">
+          <div class="figure-affil">— Origin —</div>
+          <div class="figure-name">Ymir Fritz</div>
+          <div class="figure-title-tag">First Titan — Slave to the Royal Family</div>
+          <p class="figure-arc">A slave girl who gained titan power. Served the royal family for 2,000 years out of love. Freed by Mikasa's final act of choosing herself over Eren.</p>
+          <div class="figure-fate"><strong>Fate:</strong> Freed. Disappeared into dust.</div>
         </div>
 
       </div>

@@ -322,6 +322,117 @@
     .hero-corner.tr { top: 6rem; right: 2rem; text-align: right; }
     .hero-corner.bl { bottom: 2rem; left: 2rem; }
     .hero-corner.br { bottom: 2rem; right: 2rem; text-align: right; }
+
+    /* ============================================================
+       HISTORY TIMELINE
+    ============================================================ */
+    #history { background: var(--bg); }
+
+    .timeline-wrap {
+      position: relative;
+      margin-top: 2rem;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), rgba(200,169,110,0.1));
+      transform: translateX(-50%);
+      height: 0;
+      transition: height 1.2s ease;
+    }
+    .timeline-line.drawn { height: 100%; }
+    .timeline-entry {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: calc(50% + 2.5rem);
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-entry.right {
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: calc(50% + 2.5rem);
+    }
+    .timeline-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 1.4rem 1.6rem;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .timeline-entry.right .timeline-card {
+      border-left: none;
+      border-right: 3px solid var(--red-bright);
+    }
+    .timeline-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(200,169,110,0.08);
+    }
+    .timeline-entry.right .timeline-card:hover {
+      border-color: var(--red-bright);
+    }
+    .timeline-dot {
+      position: absolute;
+      top: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--bg);
+      z-index: 2;
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.25);
+    }
+    .t-year {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-entry.right .t-year { color: var(--red-bright); }
+    .t-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .t-body {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .t-stamp {
+      margin-top: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--red-bright);
+      border: 1px solid var(--red-bright);
+      display: inline-block;
+      padding: 2px 6px;
+      opacity: 0.6;
+      transform: rotate(-1.5deg);
+    }
+    @media (max-width: 768px) {
+      .timeline-line { left: 1.2rem; }
+      .timeline-entry,
+      .timeline-entry.right {
+        justify-content: flex-start;
+        padding-left: 3.5rem;
+        padding-right: 0;
+      }
+      .timeline-dot { left: 1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -365,7 +476,115 @@
   </section>
 
   <!-- SECTIONS PLACEHOLDER -->
-  <div id="app"></div>
+  <div id="app">
+
+  <!-- HISTORY TIMELINE -->
+  <section id="history">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Declassified</span>
+        <h2 class="section-header">The Fall of History</h2>
+        <p class="section-subtitle">// Paradis Intelligence Archive — Chronological Record</p>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="timeline-line" id="tline"></div>
+
+        <div class="timeline-entry fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Incident Report</div>
+            <div class="t-year">~Year 1</div>
+            <p class="t-body">Ymir Fritz makes contact with the Source of All Living Matter beneath a great tree. She gains the power of the titans — the first in all of history.</p>
+            <span class="t-stamp">Origin Event</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry right fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Historical Record</div>
+            <div class="t-year">Year 1–1845</div>
+            <p class="t-body">2,000 years of Eldian Empire rule using titan power. Marley eventually turns the tables, seizing control of the warriors program and titan weapons.</p>
+            <span class="t-stamp">Classified</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Military Report</div>
+            <div class="t-year">Year 743</div>
+            <p class="t-body">The Great Titan War. Marley seizes 7 of the 9 titans. King Karl Fritz retreats to Paradis Island with the Founding Titan. The Eldian Empire collapses.</p>
+            <span class="t-stamp">Redacted</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry right fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Wall Construction — Classified</div>
+            <div class="t-year">Year 743</div>
+            <p class="t-body">King Karl Fritz uses thousands of Colossal Titans to build three walls — Maria, Rose, Sina. He erases the memories of all Eldians within, fabricating a false history.</p>
+            <span class="t-stamp">Memory Wiped</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Incident Report — Shiganshina</div>
+            <div class="t-year">Year 845</div>
+            <p class="t-body">Fall of Wall Maria. The Colossal and Armored Titans breach the outer wall. Shiganshina falls. Eren Yeager witnesses his mother consumed by a titan.</p>
+            <span class="t-stamp">Critical</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry right fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Enlistment Record</div>
+            <div class="t-year">Year 850</div>
+            <p class="t-body">Eren, Mikasa, and Armin join the 104th Training Corps. The seeds of the alliance that will shake the world are planted. Later: Battle of Trost. Eren reveals his titan-shifting ability.</p>
+            <span class="t-stamp">Monitored</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Intelligence Breach</div>
+            <div class="t-year">Year 851</div>
+            <p class="t-body">Survey Corps expedition. The Female Titan is identified and unmasked as Annie Leonhart — a Marleyan Warrior who had infiltrated the 104th Corps.</p>
+            <span class="t-stamp">Breach Confirmed</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry right fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">War Initiation</div>
+            <div class="t-year">Year 854</div>
+            <p class="t-body">Marley arc begins. Eren infiltrates Liberio in disguise. The Raid on Liberio — Eren single-handedly attacks Marley and consumes the War Hammer Titan.</p>
+            <span class="t-stamp">War Declared</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry fade-in">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="t-label">Final Chapter</div>
+            <div class="t-year">Year 854</div>
+            <p class="t-body">Eren activates the full power of the Founding Titan. The Rumbling begins. 80% of humanity outside Paradis is wiped out. Eren is killed by Mikasa. The cycle of violence ends — or does it.</p>
+            <span class="t-stamp">Terminated</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  </div>
 
   <script>
     // Navbar scroll effect
@@ -375,13 +594,23 @@
     });
 
     // Intersection Observer for fade-in
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); }
-      });
-    }, { threshold: 0.12 });
-    fadeEls.forEach(el => observer.observe(el));
+    function initFadeObs() {
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.12 });
+      fadeEls.forEach(el => obs.observe(el));
+    }
+    initFadeObs();
+
+    // Timeline line draw
+    const tline = document.getElementById('tline');
+    if (tline) {
+      const tlObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) tline.classList.add('drawn'); });
+      }, { threshold: 0.05 });
+      tlObs.observe(tline.parentElement);
+    }
 
     // Active nav link
     const sections = document.querySelectorAll('section[id]');

@@ -433,6 +433,143 @@
       }
       .timeline-dot { left: 1.2rem; }
     }
+
+    /* ============================================================
+       NINE TITANS SECTION
+    ============================================================ */
+    #titans { background: var(--surface); }
+
+    .titans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .titan-card {
+      perspective: 900px;
+      height: 320px;
+      cursor: pointer;
+    }
+    .titan-card-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
+    }
+    .titan-card:hover .titan-card-inner,
+    .titan-card.flipped .titan-card-inner {
+      transform: rotateY(180deg);
+    }
+    .titan-front, .titan-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      padding: 1.6rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .titan-back {
+      transform: rotateY(180deg);
+      background: #121212;
+      border-color: var(--gold-dim);
+      overflow-y: auto;
+    }
+    .titan-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .titan-front::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .titan-name {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+    .titan-inheritor {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .titan-file-no {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: rgba(200,169,110,0.3);
+      letter-spacing: 0.3em;
+    }
+    .danger-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .danger-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .danger-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--red-bright));
+      transition: width 1.2s ease;
+      width: 0;
+    }
+    .titan-card.fade-in.visible .danger-fill { width: var(--danger-width); }
+    .titan-hover-hint {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: rgba(200,169,110,0.4);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+    /* Back side */
+    .back-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .back-row {
+      margin-bottom: 0.7rem;
+    }
+    .back-row-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .back-row-val {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    @media (max-width: 900px) {
+      .titans-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .titans-grid { grid-template-columns: 1fr; }
+      .titan-card { height: auto; }
+    }
   </style>
 </head>
 <body>
@@ -585,6 +722,236 @@
   </section>
 
   </div>
+
+  <!-- NINE TITANS -->
+  <section id="titans">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Eyes Only</span>
+        <h2 class="section-header">The Nine Powers</h2>
+        <p class="section-subtitle">// Subject Dossiers — Titan Inheritor Files — Hover to Unlock</p>
+      </div>
+      <div class="titans-grid">
+
+        <!-- Founding Titan -->
+        <div class="titan-card fade-in" style="--danger-width:100%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-001 / 009</div>
+                <div class="titan-name">Founding Titan</div>
+                <div class="titan-inheritor">Final: Eren Yeager</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Founding Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Controls all titans and Eldians, alters memories, reshapes titan bodies, commands the Wall Titans.</div></div>
+              <div class="back-row"><div class="back-row-label">Condition</div><div class="back-row-val">Requires royal blood — OR contact with a royal blood titan to bypass the king's vow.</div></div>
+              <div class="back-row"><div class="back-row-label">Past Inheritors</div><div class="back-row-val">The Fritz/Reiss royal family across 2,000 years.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attack Titan -->
+        <div class="titan-card fade-in" style="--danger-width:88%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-002 / 009</div>
+                <div class="titan-name">Attack Titan</div>
+                <div class="titan-inheritor">Final: Eren Yeager</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Attack Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Receives memories from FUTURE inheritors. Always fights for freedom. Never submits to any king.</div></div>
+              <div class="back-row"><div class="back-row-label">Unique Trait</div><div class="back-row-val">The only titan with access to future memory — meaning every wielder knew vaguely what would come.</div></div>
+              <div class="back-row"><div class="back-row-label">Past Inheritors</div><div class="back-row-val">Grisha Yeager, Eren Kruger (Owl).</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colossal Titan -->
+        <div class="titan-card fade-in" style="--danger-width:95%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-003 / 009</div>
+                <div class="titan-name">Colossal Titan</div>
+                <div class="titan-inheritor">Final: Armin Arlert</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Colossal Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">60m tall. Explosive transformation releases massive steam and heat. Can control steam emission as weapon.</div></div>
+              <div class="back-row"><div class="back-row-label">Infamy</div><div class="back-row-val">Destroyed the outer gate of Wall Maria in Year 845. Also destroyed Trost gate in Year 850.</div></div>
+              <div class="back-row"><div class="back-row-label">Past Inheritors</div><div class="back-row-val">Bertholdt Hoover (Warriors).</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Armored Titan -->
+        <div class="titan-card fade-in" style="--danger-width:82%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-004 / 009</div>
+                <div class="titan-name">Armored Titan</div>
+                <div class="titan-inheritor">Current: Reiner Braun</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Armored Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Full body hardened crystalline armor. Near-invulnerable to standard attacks. The tank of the nine titans.</div></div>
+              <div class="back-row"><div class="back-row-label">Weakness</div><div class="back-row-val">Joints between armor plates remain vulnerable. Thunder spears can pierce the neck guard.</div></div>
+              <div class="back-row"><div class="back-row-label">Past Inheritors</div><div class="back-row-val">Reiner Braun — sole known holder.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Female Titan -->
+        <div class="titan-card fade-in" style="--danger-width:78%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-005 / 009</div>
+                <div class="titan-name">Female Titan</div>
+                <div class="titan-inheritor">Current: Annie Leonhart</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Female Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Near-perfect titan form. Hardening ability. Scream that attracts pure titans. Can selectively harden body parts.</div></div>
+              <div class="back-row"><div class="back-row-label">Unique Trait</div><div class="back-row-val">Extreme adaptability — absorbs combat techniques of the inheritor (e.g., Annie's martial arts).</div></div>
+              <div class="back-row"><div class="back-row-label">Status</div><div class="back-row-val">Annie spent years encased in a crystal cocoon. Emerged after the Rumbling.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beast Titan -->
+        <div class="titan-card fade-in" style="--danger-width:90%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-006 / 009</div>
+                <div class="titan-name">Beast Titan</div>
+                <div class="titan-inheritor">Current: Zeke Yeager</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Beast Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Throws objects with sniper-like accuracy. Zeke's royal blood scream turns Eldians injected with his spinal fluid into titans.</div></div>
+              <div class="back-row"><div class="back-row-label">Form</div><div class="back-row-val">Ape-like under Zeke. Shape varies by inheritor.</div></div>
+              <div class="back-row"><div class="back-row-label">Fate</div><div class="back-row-val">Zeke killed by Captain Levi Ackerman.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jaw Titan -->
+        <div class="titan-card fade-in" style="--danger-width:72%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-007 / 009</div>
+                <div class="titan-name">Jaw Titan</div>
+                <div class="titan-inheritor">Final: Falco Grice</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Jaw Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Fastest titan. Jaws and claws capable of crushing hardening. Extremely agile — difficult to hit.</div></div>
+              <div class="back-row"><div class="back-row-label">Unique</div><div class="back-row-val">The only titan with jaws strong enough to crack War Hammer structures and the hardening of other titans.</div></div>
+              <div class="back-row"><div class="back-row-label">Past Inheritors</div><div class="back-row-val">Ymir (original), Marcel Galliard, Porco Galliard.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Titan -->
+        <div class="titan-card fade-in" style="--danger-width:60%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-008 / 009</div>
+                <div class="titan-name">Cart Titan</div>
+                <div class="titan-inheritor">Current: Pieck Finger</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">Cart Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Quadrupedal endurance titan. Can maintain shifted form far longer than any other titan. Used for supply and warfare.</div></div>
+              <div class="back-row"><div class="back-row-label">Tactical Role</div><div class="back-row-val">Can carry artillery and soldiers. Versatile support unit. Not suited for direct combat.</div></div>
+              <div class="back-row"><div class="back-row-label">Inheritor</div><div class="back-row-val">Pieck Finger — sole known holder. Survived the final arc.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- War Hammer Titan -->
+        <div class="titan-card fade-in" style="--danger-width:85%">
+          <div class="titan-card-inner">
+            <div class="titan-front">
+              <div>
+                <div class="titan-file-no">FILE-009 / 009</div>
+                <div class="titan-name">War Hammer Titan</div>
+                <div class="titan-inheritor">Consumed by Eren Yeager</div>
+              </div>
+              <div>
+                <div class="danger-label">Threat Level</div>
+                <div class="danger-bar"><div class="danger-fill"></div></div>
+                <div class="titan-hover-hint">[ Hover to declassify ]</div>
+              </div>
+            </div>
+            <div class="titan-back">
+              <div class="back-title">War Hammer Titan</div>
+              <div class="back-row"><div class="back-row-label">Power</div><div class="back-row-val">Creates any structure from hardened titan flesh — blades, spikes, hammers, walls.</div></div>
+              <div class="back-row"><div class="back-row-label">Unique</div><div class="back-row-val">Operator can fight from a distance, hidden inside a crystal connected to the titan via a thread of flesh.</div></div>
+              <div class="back-row"><div class="back-row-label">Fate</div><div class="back-row-val">Lara Tybur consumed by Eren Yeager during the Raid on Liberio, Year 854.</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <script>
     // Navbar scroll effect

@@ -7,7 +7,7 @@
   <meta name="description" content="A classified military archive of Attack on Titan lore. Explore 2,000 years of Eldian history, the Nine Titans, key figures, factions, and the truth beyond the walls." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500;600;700&family=Rajdhani:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700;900&family=Rajdhani:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
@@ -25,8 +25,8 @@
       --text:        #E8E0D0;
       --muted:       #7a7268;
       --green:       #4a7c59;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-heading: 'Oswald', sans-serif;
+      --font-display: 'Cinzel Decorative', serif;
+      --font-heading: 'Cinzel', serif;
       --font-body:    'Rajdhani', sans-serif;
       --font-mono:    'Share Tech Mono', monospace;
     }
@@ -53,7 +53,7 @@
     /* ============================================================
        UTILITIES
     ============================================================ */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
     .section-header {
       font-family: var(--font-heading);
       font-size: clamp(2rem, 5vw, 4rem);
@@ -180,16 +180,40 @@
     }
 
     /* ============================================================
-       BACKGROUND DRIFT ANIMATIONS — living background effect
+       CINEMATIC BACKGROUND ANIMATIONS (KEN BURNS DRIFT)
     ============================================================ */
-    @keyframes bgDriftHero  { 0%,100%{background-position:50% 50%} 50%{background-position:53% 55%} }
-    @keyframes bgDrift1     { 0%,100%{background-position:50% 40%} 50%{background-position:53% 44%} }
-    @keyframes bgDrift2     { 0%,100%{background-position:55% 30%} 50%{background-position:50% 35%} }
-    @keyframes bgDrift3     { 0%,100%{background-position:50% 20%} 50%{background-position:47% 24%} }
-    @keyframes bgDrift4     { 0%,100%{background-position:50% 35%} 50%{background-position:52% 40%} }
-    @keyframes bgDrift5     { 0%,100%{background-position:50% 40%} 50%{background-position:48% 37%} }
-    @keyframes bgDrift6     { 0%,100%{background-position:50% 40%} 50%{background-position:53% 43%} }
-    @keyframes bgDrift7     { 0%,100%{background-position:50% 40%} 50%{background-position:50% 45%} }
+    .cinematic-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+      transform: scale(1.15);
+      width: 100%;
+      height: 100%;
+    }
+    .bg-move-1 { animation: bgMove1 32s ease-in-out infinite alternate; }
+    .bg-move-2 { animation: bgMove2 36s ease-in-out infinite alternate; }
+    .bg-move-3 { animation: bgMove3 40s ease-in-out infinite alternate; }
+    .bg-move-4 { animation: bgMove4 28s ease-in-out infinite alternate; }
+
+    @keyframes bgMove1 {
+      0% { transform: scale(1.12) translate(0, 0); }
+      100% { transform: scale(1.22) translate(-2%, 2.5%); }
+    }
+    @keyframes bgMove2 {
+      0% { transform: scale(1.22) translate(0, 0); }
+      100% { transform: scale(1.12) translate(2.5%, -2%); }
+    }
+    @keyframes bgMove3 {
+      0% { transform: scale(1.14) translate(0, 0); }
+      100% { transform: scale(1.26) translate(2%, 2.5%); }
+    }
+    @keyframes bgMove4 {
+      0% { transform: scale(1.26) translate(0, 0); }
+      100% { transform: scale(1.14) translate(-2%, -2%); }
+    }
 
     #hero {
       position: relative;
@@ -202,10 +226,7 @@
       text-align: center;
       overflow: hidden;
       padding: 0;
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.95) 100%),
-        url('bg_hero.png') center/cover no-repeat;
-      animation: bgDriftHero 25s ease-in-out infinite;
+      background: #080808;
     }
     /* Fog + grain overlay */
     #hero::before {
@@ -327,10 +348,9 @@
        HISTORY TIMELINE
     ============================================================ */
     #history {
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.82) 50%, rgba(8,8,8,0.94) 100%),
-        url('bg_history.png') 50% 40%/cover no-repeat;
-      animation: bgDrift1 22s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
 
     .timeline-wrap {
@@ -443,10 +463,9 @@
        NINE TITANS SECTION
     ============================================================ */
     #titans {
-      background:
-        linear-gradient(180deg, rgba(17,17,17,0.90) 0%, rgba(17,17,17,0.84) 50%, rgba(17,17,17,0.94) 100%),
-        url('bg_titans.png') 55% 30%/cover no-repeat;
-      animation: bgDrift2 28s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
 
     .titans-grid {
@@ -585,10 +604,9 @@
        FACTIONS SECTION
     ============================================================ */
     #factions {
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.87) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.93) 100%),
-        url('bg_factions.png') 50% 20%/cover no-repeat;
-      animation: bgDrift3 20s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
 
     .factions-grid {
@@ -667,10 +685,9 @@
        KEY FIGURES SECTION
     ============================================================ */
     #figures {
-      background:
-        linear-gradient(180deg, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.82) 50%, rgba(17,17,17,0.94) 100%),
-        url('bg_figures.png') 50% 35%/cover no-repeat;
-      animation: bgDrift4 24s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
 
     .figures-grid {
@@ -755,10 +772,9 @@
        DARK LORE FACTS
     ============================================================ */
     #lore {
-      background:
-        linear-gradient(180deg, rgba(4,2,1,0.78) 0%, rgba(6,3,1,0.68) 40%, rgba(4,2,1,0.88) 100%),
-        url('bg_lore.png') 50% 40%/cover no-repeat;
-      animation: bgDrift5 30s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
 
     .lore-grid {
@@ -981,10 +997,9 @@
        THE THREE WALLS
     ============================================================ */
     #walls {
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.72) 50%, rgba(8,8,8,0.90) 100%),
-        url('bg_walls.png') 50% 40%/cover no-repeat;
-      animation: bgDrift4 28s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
     .walls-grid {
       display: grid;
@@ -1125,10 +1140,9 @@
        TITAN SIZE COMPARISON
     ============================================================ */
     #sizes {
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.94) 100%),
-        url('bg_sizes.png') 50% 40%/cover no-repeat;
-      animation: bgDrift6 26s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
     .size-chart {
       margin-top: 1.5rem;
@@ -1216,10 +1230,9 @@
        QUIZ SECTION
     ============================================================ */
     #quiz {
-      background:
-        linear-gradient(180deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.78) 50%, rgba(8,8,8,0.92) 100%),
-        url('bg_quiz.png') 50% 40%/cover no-repeat;
-      animation: bgDrift7 23s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      background: #080808;
     }
     .quiz-wrap { max-width: 720px; margin: 0 auto; }
     .quiz-question-block {
@@ -1458,6 +1471,7 @@
 
   <!-- HERO -->
   <section id="hero">
+    <div class="cinematic-bg bg-move-1" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.95) 100%), url('bg_hero.png');"></div>
     <div class="hero-corner tl">[ AoT Archive ]<br>Paradis Island — Wall Maria</div>
     <div class="hero-corner tr">Year 854<br>[ Status: Active ]</div>
     <div class="hero-corner bl">Clearance: Alpha<br>Eyes Only</div>
@@ -1486,6 +1500,7 @@
 
   <!-- HISTORY TIMELINE -->
   <section id="history">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.82) 50%, rgba(8,8,8,0.94) 100%), url('bg_history.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Declassified</span>
@@ -1594,6 +1609,7 @@
 
   <!-- NINE TITANS -->
   <section id="titans">
+    <div class="cinematic-bg bg-move-3" style="background-image: linear-gradient(180deg, rgba(17,17,17,0.90) 0%, rgba(17,17,17,0.84) 50%, rgba(17,17,17,0.94) 100%), url('bg_titans.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Eyes Only</span>
@@ -1824,6 +1840,7 @@
 
   <!-- FACTIONS -->
   <section id="factions">
+    <div class="cinematic-bg bg-move-4" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.87) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.93) 100%), url('bg_factions.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Active Threat</span>
@@ -1880,6 +1897,7 @@
 
   <!-- KEY FIGURES -->
   <section id="figures">
+    <div class="cinematic-bg bg-move-1" style="background-image: linear-gradient(180deg, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.82) 50%, rgba(17,17,17,0.94) 100%), url('bg_figures.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Personnel Files</span>
@@ -1982,6 +2000,7 @@
 
   <!-- DARK LORE FACTS -->
   <section id="lore">
+    <div class="cinematic-bg bg-move-3" style="background-image: linear-gradient(180deg, rgba(4,2,1,0.78) 0%, rgba(6,3,1,0.68) 40%, rgba(4,2,1,0.88) 100%), url('bg_lore.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Top Secret</span>
@@ -2105,6 +2124,7 @@
 
   <!-- THE THREE WALLS -->
   <section id="walls">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.72) 50%, rgba(8,8,8,0.90) 100%), url('bg_walls.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Structural Analysis</span>
@@ -2157,6 +2177,7 @@
 
   <!-- SIZE COMPARISON -->
   <section id="sizes">
+    <div class="cinematic-bg bg-move-4" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.94) 100%), url('bg_sizes.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Scale Report</span>
@@ -2237,6 +2258,7 @@
 
   <!-- QUIZ -->
   <section id="quiz">
+    <div class="cinematic-bg bg-move-1" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.78) 50%, rgba(8,8,8,0.92) 100%), url('bg_quiz.png');"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Intel Test</span>

@@ -476,7 +476,7 @@
     }
     .titan-card {
       perspective: 900px;
-      height: 320px;
+      height: 380px;
       cursor: pointer;
     }
     .titan-card-inner {
@@ -494,7 +494,7 @@
       inset: 0;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      padding: 1.6rem;
+      padding: 1.2rem;
       background: var(--card);
       border: 1px solid var(--border);
     }
@@ -503,11 +503,33 @@
       background: #121212;
       border-color: var(--gold-dim);
       overflow-y: auto;
+      padding: 1.4rem;
     }
     .titan-front {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+    .titan-img-container {
+      width: 100%;
+      height: 160px;
+      border: 1px solid var(--border);
+      background: #050505;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding: 0.4rem;
+    }
+    .titan-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: grayscale(1) contrast(1.1) brightness(0.8) sepia(0.15);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .titan-card:hover .titan-card-img {
+      filter: grayscale(0.2) contrast(1.25) brightness(0.95) sepia(0.05);
+      transform: scale(1.03);
     }
     .titan-front::before {
       content: '';
@@ -769,6 +791,117 @@
     @media (max-width: 500px)  { .figures-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
+       TACTICAL CAMPAIGNS SECTION
+    ============================================================ */
+    #campaigns {
+      position: relative;
+      overflow: hidden;
+      background: #080808;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .campaigns-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .campaign-card {
+      background: rgba(17,17,17,0.85);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .campaign-card:hover {
+      border-color: var(--red-dim);
+      transform: translateY(-2px);
+    }
+    .campaign-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--red-bright), transparent);
+      opacity: 0.6;
+    }
+    .campaign-date {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--red-bright);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .campaign-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .campaign-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .campaign-body {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    .campaign-outcome {
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .campaign-outcome span {
+      color: var(--gold);
+    }
+    .campaign-casualties {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--red-dim);
+      letter-spacing: 0.15em;
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+    @media (max-width: 1000px) {
+      .campaigns-grid { grid-template-columns: 1fr; }
+    }
+    .campaign-img-container {
+      width: 100%;
+      height: 160px;
+      border: 1px solid var(--border);
+      background: #020202;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .campaign-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.4) contrast(1.1) brightness(0.85);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .campaign-card:hover .campaign-card-img {
+      filter: grayscale(0) contrast(1.2) brightness(0.95);
+      transform: scale(1.05);
+    }
+
+    /* ============================================================
        DARK LORE FACTS
     ============================================================ */
     #lore {
@@ -863,10 +996,12 @@
        DECRYPTION CONSOLE (CRT TERMINAL)
     ============================================================ */
     #console-sec {
-      background: #080808;
+      position: relative;
+      overflow: hidden;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 5rem 0;
+      background: #080808;
     }
     .terminal-screen {
       background: #050705;
@@ -1456,12 +1591,16 @@
 
   <!-- NAVBAR -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo"><span>AoT</span></a>
+    <a href="#hero" class="nav-logo" style="display: flex; align-items: center; gap: 0.6rem;">
+      <img src="main.png" alt="AoT Emblem" style="height: 28px; width: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(200,169,110,0.5));" />
+      <span>AoT</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#history" id="nav-history">HISTORY</a></li>
       <li><a href="#titans" id="nav-titans">TITANS</a></li>
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
+      <li><a href="#campaigns" id="nav-campaigns">CAMPAIGNS</a></li>
       <li><a href="#walls" id="nav-walls">WALLS</a></li>
       <li><a href="#console-sec" id="nav-console">CONSOLE</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
@@ -1476,6 +1615,10 @@
     <div class="hero-corner tr">Year 854<br>[ Status: Active ]</div>
     <div class="hero-corner bl">Clearance: Alpha<br>Eyes Only</div>
     <div class="hero-corner br">Files Unlocked: 9/9<br>[ Do Not Copy ]</div>
+
+    <div style="margin-bottom: 1.2rem; filter: drop-shadow(0 0 15px rgba(200, 169, 110, 0.4)); animation: pulse 3s infinite ease-in-out;">
+      <img src="main.png" alt="Wings of Freedom Logo" style="height: 90px; width: auto; object-fit: contain;" />
+    </div>
 
     <p class="hero-eyebrow">Survey Corps — Restricted Archive — Year 854</p>
 
@@ -1622,6 +1765,9 @@
         <div class="titan-card fade-in" style="--danger-width:100%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_founding.png" alt="Founding Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-001 / 009</div>
                 <div class="titan-name">Founding Titan</div>
@@ -1646,6 +1792,9 @@
         <div class="titan-card fade-in" style="--danger-width:88%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_attack.png" alt="Attack Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-002 / 009</div>
                 <div class="titan-name">Attack Titan</div>
@@ -1670,6 +1819,9 @@
         <div class="titan-card fade-in" style="--danger-width:95%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_colossal.png" alt="Colossal Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-003 / 009</div>
                 <div class="titan-name">Colossal Titan</div>
@@ -1694,6 +1846,9 @@
         <div class="titan-card fade-in" style="--danger-width:82%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_armored.png" alt="Armored Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-004 / 009</div>
                 <div class="titan-name">Armored Titan</div>
@@ -1718,6 +1873,9 @@
         <div class="titan-card fade-in" style="--danger-width:78%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_female.png" alt="Female Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-005 / 009</div>
                 <div class="titan-name">Female Titan</div>
@@ -1742,6 +1900,9 @@
         <div class="titan-card fade-in" style="--danger-width:90%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_beast.png" alt="Beast Titan" class="titan-card-img" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-006 / 009</div>
                 <div class="titan-name">Beast Titan</div>
@@ -1766,6 +1927,9 @@
         <div class="titan-card fade-in" style="--danger-width:72%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_jaw.png" alt="Jaw Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.3) brightness(0.75) sepia(0.15);" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-007 / 009</div>
                 <div class="titan-name">Jaw Titan</div>
@@ -1790,6 +1954,9 @@
         <div class="titan-card fade-in" style="--danger-width:60%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_cart.png" alt="Cart Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.15) brightness(0.85) sepia(0.2) hue-rotate(30deg);" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-008 / 009</div>
                 <div class="titan-name">Cart Titan</div>
@@ -1814,6 +1981,9 @@
         <div class="titan-card fade-in" style="--danger-width:85%">
           <div class="titan-card-inner">
             <div class="titan-front">
+              <div class="titan-img-container">
+                <img src="titan_warhammer.png" alt="War Hammer Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.4) brightness(0.65) sepia(0.05);" />
+              </div>
               <div>
                 <div class="titan-file-no">FILE-009 / 009</div>
                 <div class="titan-name">War Hammer Titan</div>
@@ -1998,6 +2168,61 @@
     </div>
   </section>
 
+  <!-- TACTICAL CAMPAIGNS -->
+  <section id="campaigns">
+    <div class="cinematic-bg bg-move-1" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.92) 0%, rgba(15,8,8,0.86) 50%, rgba(8,8,8,0.94) 100%), url('bg_history.png');"></div>
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Combat Records</span>
+        <h2 class="section-header">Critical Campaigns</h2>
+        <p class="section-subtitle">// The tactical operations that changed the course of history.</p>
+      </div>
+
+      <div class="campaigns-grid">
+
+        <!-- Shiganshina Reclaim -->
+        <div class="campaign-card fade-in">
+          <div class="campaign-date">Year 850 — Wall Maria</div>
+          <div class="campaign-title">Return to Shiganshina</div>
+          <div class="campaign-subtitle">Basement Retrieval Operation</div>
+          <div class="campaign-img-container">
+            <img src="grisha_key.png" class="campaign-card-img" alt="Basement Key" />
+          </div>
+          <p class="campaign-body">The ultimate gamble to reclaim Wall Maria and reach Grisha Yeager's basement. Facing a deadly ambush by the Beast, Armored, and Colossal Titans, Commander Erwin Smith led a suicidal cavalry charge to buy time for Levi to take down the Beast. Simultaneously, Armin sacrificed his body as a decoy to defeat the Colossal Titan, Bertholdt.</p>
+          <div class="campaign-outcome">Outcome: <span>Success / Reclaimed</span></div>
+          <div class="campaign-casualties">Casualty Rate: 99.1% (9 Survivors)</div>
+        </div>
+
+        <!-- Liberio Raid -->
+        <div class="campaign-card fade-in">
+          <div class="campaign-date">Year 854 — Marley Empire</div>
+          <div class="campaign-title">The Raid on Liberio</div>
+          <div class="campaign-subtitle">Declaration of War counter-strike</div>
+          <div class="campaign-img-container">
+            <img src="ere.jpg" class="campaign-card-img" alt="Onslaught by Eren" />
+          </div>
+          <p class="campaign-body">Following Willy Tybur's public declaration of war against Paradis, Eren Yeager initiated a preemptive strike, transforming in the middle of Liberio's internment zone. The Survey Corps deployed using advanced vertical maneuvering gear to support Eren, decimating Marley's military command and capturing the War Hammer Titan.</p>
+          <div class="campaign-outcome">Outcome: <span>Tactical Victory</span></div>
+          <div class="campaign-casualties">Casualty Rate: Low (8 Scouts, Sasha Blouse)</div>
+        </div>
+
+        <!-- The Rumbling -->
+        <div class="campaign-card fade-in">
+          <div class="campaign-date">Year 854 — Global Extinction</div>
+          <div class="campaign-title">The Rumbling</div>
+          <div class="campaign-subtitle">Final Cataclysmic March</div>
+          <div class="campaign-img-container">
+            <img src="rumb.jpg" class="campaign-card-img" alt="The Rumbling" />
+          </div>
+          <p class="campaign-body">After bypassing Karl Fritz's vow of pacifism, Eren Yeager activated the Coordinate, releasing millions of Colossal Titans dormant within the walls of Paradis. The wall titans marched across the ocean to flatten all life outside the island. An alliance of Eldian scouts and Marleyan warriors fought Eren on the Founding Titan's skeletal back.</p>
+          <div class="campaign-outcome">Outcome: <span>Titan Curse Ended</span></div>
+          <div class="campaign-casualties">Global Population Loss: 80%</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- DARK LORE FACTS -->
   <section id="lore">
     <div class="cinematic-bg bg-move-3" style="background-image: linear-gradient(180deg, rgba(4,2,1,0.78) 0%, rgba(6,3,1,0.68) 40%, rgba(4,2,1,0.88) 100%), url('bg_lore.png');"></div>
@@ -2087,6 +2312,7 @@
 
   <!-- DECRYPTION CONSOLE -->
   <section id="console-sec">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.92) 50%, rgba(8,8,8,0.96) 100%), url('bg_console.png'); opacity: 0.5;"></div>
     <div class="container">
       <div class="fade-in">
         <span class="classified-stamp">Terminal Uplink</span>
@@ -2114,9 +2340,15 @@
       <div class="terminal-quick-cmds fade-in">
         <button class="term-btn" onclick="runTermCmd('help')">run: help</button>
         <button class="term-btn" onclick="runTermCmd('status')">run: status</button>
+        <button class="term-btn" onclick="runTermCmd('campaigns')">run: campaigns</button>
+        <button class="term-btn" onclick="runTermCmd('wall_status')">run: wall_status</button>
+        <button class="term-btn" onclick="runTermCmd('rumbling')">run: rumbling</button>
+        <button class="term-btn" onclick="runTermCmd('scout erwin')">scout: erwin</button>
+        <button class="term-btn" onclick="runTermCmd('scout levi')">scout: levi</button>
+        <button class="term-btn" onclick="runTermCmd('scout hange')">scout: hange</button>
         <button class="term-btn" onclick="runTermCmd('decrypt basement')">decrypt: basement</button>
         <button class="term-btn" onclick="runTermCmd('decrypt path')">decrypt: path</button>
-        <button class="term-btn" onclick="runTermCmd('decrypt rumbling')">decrypt: rumbling</button>
+        <button class="term-btn" onclick="runTermCmd('inject_serum')" style="color: var(--red-bright); border-color: var(--red-dim);">run: inject_serum</button>
         <button class="term-btn" onclick="runTermCmd('clear')">clear console</button>
       </div>
     </div>
@@ -2407,6 +2639,7 @@
       <a href="#titans">Titans</a>
       <a href="#factions">Factions</a>
       <a href="#figures">Figures</a>
+      <a href="#campaigns">Campaigns</a>
       <a href="#lore">Lore</a>
       <a href="#sizes">Scale</a>
       <a href="#quiz">Quiz</a>
@@ -2597,9 +2830,13 @@
           case 'help':
             writeTermLine(`Available Diagnostics Commands:
   - <b>status</b> : Show wall status, defensive parameters, and titan count.
-  - <b>decrypt &lt;code&gt;</b> : Unlock encrypted intel reports.
-  - <b>clear</b> : Clear the terminal output console.
-  - <b>help</b> : Display this command registry index.`, 'info');
+  - <b>campaigns</b> : List key military campaign directories.
+  - <b>scout &lt;name&gt;</b> : Access soldier logs ('erwin', 'levi', or 'hange').
+  - <b>wall_status</b> : Check coordinates and Wall Titan structural integrity.
+  - <b>rumbling</b> : Print declassified broadcast from Eren Yeager.
+  - <b>inject_serum</b> : Initialize spinal fluid transformation sequence.
+  - <b>decrypt &lt;code&gt;</b> : Unlock encrypted intel reports (try 'basement' or 'path').
+  - <b>clear</b> : Clear the terminal output console.`, 'info');
             break;
 
           case 'clear':
@@ -2613,6 +2850,81 @@ WALL ROSE  : [ BREACHED - SECURED VIA ROCK BLOCK ]
 WALL SINA  : [ INTACT - CONTAINS COLOSSAL TITANS ]
 SURVEY CORPS ACTIVE DUTY : [ 9 SURVIVORS ]
 FOUNDING TITAN COORDINATE STATUS : [ ELDIAN PATHS LINKED ]`, 'system');
+            break;
+
+          case 'campaigns':
+            writeTermLine(`=== PARADIS MILITARY CAMPAIGN REGISTRY ===
+[DIR] C-850-SHIGANSHINA : [RECLAIMED - CASUALTIES: 99.1%]
+      Key outcomes: Reclaimed Wall Maria, secured Basement Archives.
+[DIR] C-854-LIBERIO     : [VICTORY - CASUALTIES: MINIMAL]
+      Key outcomes: Captured War Hammer Titan, disrupted Marley command.
+[DIR] C-854-RUMBLING    : [ONGOING - EMERGENCY LEVEL MAX]
+      Key outcomes: Titan curse eliminated, 80% global population loss.`, 'system');
+            break;
+
+          case 'scout':
+            if (!arg) {
+              writeTermLine(`ERROR: Missing scout name. Usage: scout &lt;erwin|levi|hange&gt;`, 'error');
+            } else if (arg === 'erwin') {
+              writeTermLine(`=== SOLDIER LOG: COMMANDER ERWIN SMITH ===
+STATUS: DECEASED (Battle of Shiganshina)
+RECORD: Led the Survey Corps through its most grueling years. Devised the Long-Distance Enemy Scouting Formation.
+LAST ACTION: Led a suicide cavalry charge directly into the Beast Titan's bombardment, securing a window of opportunity for Captain Levi to strike.
+LEGACY: "My soldiers, rage! My soldiers, scream! My soldiers, fight!"`, 'info');
+            } else if (arg === 'levi') {
+              writeTermLine(`=== SOLDIER LOG: CAPTAIN LEVI ACKERMAN ===
+STATUS: ACTIVE (Humanity's Strongest Soldier)
+RECORD: Leader of the Special Operations Squad. Legendary combat prowess with over 200 confirmed titan kills.
+NOTABLE ACTIONS: Decimated the Beast Titan twice. Handled the capture of the Female Titan.
+CURRENT STATE: Severely injured but active in final joint operations.`, 'info');
+            } else if (arg === 'hange') {
+              writeTermLine(`=== SOLDIER LOG: COMMANDER HANGE ZOË ===
+STATUS: DECEASED (Battle of Heaven and Earth)
+RECORD: Lead Titan researcher, succeeded Erwin Smith as Commander of the Survey Corps.
+LAST ACTION: Stood alone against the advancing Wall Titans of the Rumbling, burning to death while slowing them down to allow the aircraft escape.
+LEGACY: Devoted her heart to scientific discovery and the future of humanity.`, 'info');
+            } else {
+              writeTermLine(`ERROR: Scout "${arg}" not found in local database records.`, 'error');
+            }
+            break;
+
+          case 'wall_status':
+            writeTermLine(`=== WALL STRUCTURAL DIAGNOSTICS ===
+WALL MARIA : HEIGHT: 50M | INTEGRITY: 0% [BREACHED - DESTROYED]
+WALL ROSE  : HEIGHT: 50M | INTEGRITY: 85% [SEALED VIA SHIGANSHINA ROCK]
+WALL SINA  : HEIGHT: 50M | INTEGRITY: 100% [INTACT]
+--------------------------------------------------
+WARNING: DORMANT COALITION DETECTED
+Active Wall Titans inside Wall Sina: ~585,000
+Current status: DORMANT (Hardening intact)
+Indicator: STABLE`, 'system');
+            break;
+
+          case 'rumbling':
+            writeTermLine(`=== BROADCAST DECLASSIFICATION: COORDINATE INTERCEPT ===
+TRANSCRIPT FROM SUBJECTS OF YMIR NETWORKS:
+"To all Subjects of Ymir. My name is Eren Yeager. The hardening of the walls has dissolved. All titans dormant within them have begun their march. 
+My goal is to protect the people of Paradis, the land where I was born and raised. The world outside will not rest until all of us are exterminated.
+I reject that future. I will trample and flatten every inch of land outside this island until every last life is wiped out of this world."`, 'error');
+            break;
+
+          case 'inject_serum':
+            writeTermLine(`[!!! SYSTEM WARNING: RESTRICTED COMMAND DETECTED !!!]
+INITIALIZING TITAN SPINAL FLUID INJECTION PROTOCOL...
+--------------------------------------------------
+CAUTION: Administration of titan serum will induce permanent transformation into a Pure Titan unless a Titan Shifter is consumed immediately.
+--------------------------------------------------
+Do you wish to proceed? [ADMIN PRESET TRIGGERED]`, 'error');
+            setTimeout(() => {
+              const screen = document.querySelector('.terminal-screen');
+              screen.style.borderColor = '#ff1a1a';
+              screen.style.boxShadow = '0 0 50px rgba(255,26,26,0.5), inset 0 0 35px rgba(0,0,0,0.95)';
+              writeTermLine(`WARNING: SYRINGE CHARGED. SPINAL FLUID ACTIVE.`, 'error');
+              setTimeout(() => {
+                screen.style.borderColor = '#1f351f';
+                screen.style.boxShadow = '0 0 40px rgba(31,53,31,0.25), inset 0 0 30px rgba(0,0,0,0.95)';
+              }, 4000);
+            }, 1000);
             break;
 
           case 'decrypt':

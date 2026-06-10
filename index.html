@@ -1814,7 +1814,8 @@
       background: #000;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 2.5s ease-in-out;
+      transition: opacity 0.4s ease-out;
+      will-change: opacity;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1822,6 +1823,7 @@
     .horror-overlay.active {
       opacity: 1;
       pointer-events: all;
+      transition: opacity 2.0s ease-in-out;
     }
     .horror-bg {
       position: absolute;
@@ -3417,7 +3419,7 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
         display.style.display = 'none';
         horrorQuote.textContent = '';
         exitBtn.classList.remove('visible');
-      }, 1000);
+      }, 400);
     }
 
     function typeQuote(element, text, callback) {

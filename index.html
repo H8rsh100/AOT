@@ -485,7 +485,6 @@
       transform-style: preserve-3d;
       transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
     }
-    .titan-card:hover .titan-card-inner,
     .titan-card.flipped .titan-card-inner {
       transform: rotateY(180deg);
     }
@@ -527,9 +526,16 @@
       filter: grayscale(1) contrast(1.1) brightness(0.8) sepia(0.15);
       transition: filter 0.4s ease, transform 0.4s ease;
     }
-    .titan-card:hover .titan-card-img {
-      filter: grayscale(0.2) contrast(1.25) brightness(0.95) sepia(0.05);
-      transform: scale(1.03);
+    .titan-card.active-hover .titan-card-img,
+    .titan-card.flipped .titan-card-img {
+      filter: grayscale(0) contrast(1.3) brightness(1.1) sepia(0) drop-shadow(0 0 10px rgba(200, 169, 110, 0.75));
+      transform: scale(1.05);
+    }
+    .titan-card {
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .titan-card.active-hover {
+      box-shadow: 0 0 25px rgba(200, 169, 110, 0.4);
     }
     .titan-front::before {
       content: '';
@@ -880,25 +886,195 @@
     @media (max-width: 1000px) {
       .campaigns-grid { grid-template-columns: 1fr; }
     }
-    .campaign-img-container {
-      width: 100%;
-      height: 160px;
-      border: 1px solid var(--border);
-      background: #020202;
-      overflow: hidden;
-      margin-bottom: 1rem;
+    /* ============================================================
+       THE RUMBLING & ONSLAUGHT SECTION
+    ============================================================ */
+    #rumbling-sec {
       position: relative;
+      overflow: hidden;
+      background: #060101;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0;
+      transition: background-color 3s ease-in-out;
+      min-height: 550px;
     }
-    .campaign-card-img {
+    .rumbling-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .rumbling-desc {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      transition: opacity 1.5s ease-in-out;
+    }
+    .onslaught-widget {
+      border: 1px solid var(--red-dim);
+      background: rgba(10, 2, 2, 0.9);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      width: 100%;
+    }
+    
+    /* Fullscreen expansion of widget during onslaught event */
+    #rumbling-sec.onslaught-active .onslaught-widget {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      min-height: 100%;
+      border: none;
+      background: transparent;
+      z-index: 10;
+      box-shadow: none;
+    }
+    #rumbling-sec.onslaught-active .container {
+      position: static;
+    }
+    #rumbling-sec.onslaught-active .container > .fade-in {
+      opacity: 0 !important;
+      pointer-events: none;
+      transition: opacity 1.5s ease-in-out;
+    }
+    #rumbling-sec.onslaught-active .rumbling-desc {
+      opacity: 0 !important;
+      pointer-events: none;
+      transition: opacity 1.5s ease-in-out;
+    }
+    #rumbling-sec.onslaught-active .cinematic-bg {
+      opacity: 0 !important;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .onslaught-btn-wrapper {
+      padding: 2rem;
+      z-index: 10;
+    }
+    .onslaught-trigger-btn {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--red-bright);
+      background: transparent;
+      border: 1px solid var(--red-bright);
+      padding: 0.8rem 1.6rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 26, 26, 0.1);
+    }
+    .onslaught-trigger-btn:hover {
+      background: var(--red-bright);
+      color: #000;
+      box-shadow: 0 0 25px rgba(255, 26, 26, 0.4);
+    }
+    .onslaught-display {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .onslaught-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 4s ease-in-out;
+      z-index: 1;
+    }
+    .onslaught-overlay {
+      position: relative;
+      z-index: 2;
+      background: rgba(0,0,0,0.72);
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      filter: grayscale(0.4) contrast(1.1) brightness(0.85);
-      transition: filter 0.4s ease, transform 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      transition: background-color 3s ease-in-out;
     }
-    .campaign-card:hover .campaign-card-img {
-      filter: grayscale(0) contrast(1.2) brightness(0.95);
-      transform: scale(1.05);
+    #rumbling-sec.onslaught-active .onslaught-overlay {
+      background: rgba(0,0,0,0.85); /* darken background during final speech */
+    }
+
+    .onslaught-metrics {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      transition: transform 1.5s ease;
+    }
+    #rumbling-sec.onslaught-active .onslaught-metrics {
+      transform: translateY(-20px);
+    }
+
+    .metric-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--red-bright);
+      letter-spacing: 0.25em;
+      margin-bottom: 0.5rem;
+    }
+    .metric-count {
+      font-family: var(--font-mono);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 15px rgba(255, 26, 26, 0.5);
+    }
+    .metric-percent {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      margin-top: 0.3rem;
+    }
+    .onslaught-quote {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--red-bright);
+      max-width: 650px;
+      line-height: 1.6;
+      min-height: 2.5em;
+      text-shadow: 0 0 12px rgba(255, 26, 26, 0.8);
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+    }
+    @keyframes screenShake {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-3px, 2px); }
+      20% { transform: translate(3px, -2px); }
+      30% { transform: translate(-2px, -3px); }
+      40% { transform: translate(2px, 3px); }
+      50% { transform: translate(-3px, 2px); }
+      60% { transform: translate(3px, 1px); }
+      70% { transform: translate(-2px, -2px); }
+      80% { transform: translate(2px, 2px); }
+      90% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0, 0); }
+    }
+    .shake {
+      animation: screenShake 0.4s ease-in-out infinite;
     }
 
     /* ============================================================
@@ -1591,16 +1767,14 @@
 
   <!-- NAVBAR -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo" style="display: flex; align-items: center; gap: 0.6rem;">
-      <img src="main.png" alt="AoT Emblem" style="height: 28px; width: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(200,169,110,0.5));" />
-      <span>AoT</span>
-    </a>
+    <a href="#hero" class="nav-logo"><span>AoT</span></a>
     <ul class="nav-links">
       <li><a href="#history" id="nav-history">HISTORY</a></li>
       <li><a href="#titans" id="nav-titans">TITANS</a></li>
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
       <li><a href="#campaigns" id="nav-campaigns">CAMPAIGNS</a></li>
+      <li><a href="#rumbling-sec" id="nav-rumbling">RUMBLING</a></li>
       <li><a href="#walls" id="nav-walls">WALLS</a></li>
       <li><a href="#console-sec" id="nav-console">CONSOLE</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
@@ -1615,10 +1789,6 @@
     <div class="hero-corner tr">Year 854<br>[ Status: Active ]</div>
     <div class="hero-corner bl">Clearance: Alpha<br>Eyes Only</div>
     <div class="hero-corner br">Files Unlocked: 9/9<br>[ Do Not Copy ]</div>
-
-    <div style="margin-bottom: 1.2rem; filter: drop-shadow(0 0 15px rgba(200, 169, 110, 0.4)); animation: pulse 3s infinite ease-in-out;">
-      <img src="main.png" alt="Wings of Freedom Logo" style="height: 90px; width: auto; object-fit: contain;" />
-    </div>
 
     <p class="hero-eyebrow">Survey Corps — Restricted Archive — Year 854</p>
 
@@ -2178,16 +2348,13 @@
         <p class="section-subtitle">// The tactical operations that changed the course of history.</p>
       </div>
 
-      <div class="campaigns-grid">
+      <div class="campaigns-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 2rem auto 0 auto;">
 
         <!-- Shiganshina Reclaim -->
         <div class="campaign-card fade-in">
           <div class="campaign-date">Year 850 — Wall Maria</div>
           <div class="campaign-title">Return to Shiganshina</div>
           <div class="campaign-subtitle">Basement Retrieval Operation</div>
-          <div class="campaign-img-container">
-            <img src="grisha_key.png" class="campaign-card-img" alt="Basement Key" />
-          </div>
           <p class="campaign-body">The ultimate gamble to reclaim Wall Maria and reach Grisha Yeager's basement. Facing a deadly ambush by the Beast, Armored, and Colossal Titans, Commander Erwin Smith led a suicidal cavalry charge to buy time for Levi to take down the Beast. Simultaneously, Armin sacrificed his body as a decoy to defeat the Colossal Titan, Bertholdt.</p>
           <div class="campaign-outcome">Outcome: <span>Success / Reclaimed</span></div>
           <div class="campaign-casualties">Casualty Rate: 99.1% (9 Survivors)</div>
@@ -2198,27 +2365,50 @@
           <div class="campaign-date">Year 854 — Marley Empire</div>
           <div class="campaign-title">The Raid on Liberio</div>
           <div class="campaign-subtitle">Declaration of War counter-strike</div>
-          <div class="campaign-img-container">
-            <img src="ere.jpg" class="campaign-card-img" alt="Onslaught by Eren" />
-          </div>
           <p class="campaign-body">Following Willy Tybur's public declaration of war against Paradis, Eren Yeager initiated a preemptive strike, transforming in the middle of Liberio's internment zone. The Survey Corps deployed using advanced vertical maneuvering gear to support Eren, decimating Marley's military command and capturing the War Hammer Titan.</p>
           <div class="campaign-outcome">Outcome: <span>Tactical Victory</span></div>
           <div class="campaign-casualties">Casualty Rate: Low (8 Scouts, Sasha Blouse)</div>
         </div>
 
-        <!-- The Rumbling -->
-        <div class="campaign-card fade-in">
-          <div class="campaign-date">Year 854 — Global Extinction</div>
-          <div class="campaign-title">The Rumbling</div>
-          <div class="campaign-subtitle">Final Cataclysmic March</div>
-          <div class="campaign-img-container">
-            <img src="rumb.jpg" class="campaign-card-img" alt="The Rumbling" />
-          </div>
-          <p class="campaign-body">After bypassing Karl Fritz's vow of pacifism, Eren Yeager activated the Coordinate, releasing millions of Colossal Titans dormant within the walls of Paradis. The wall titans marched across the ocean to flatten all life outside the island. An alliance of Eldian scouts and Marleyan warriors fought Eren on the Founding Titan's skeletal back.</p>
-          <div class="campaign-outcome">Outcome: <span>Titan Curse Ended</span></div>
-          <div class="campaign-casualties">Global Population Loss: 80%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RUMBLING SECTION -->
+  <section id="rumbling-sec">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,0,0,0.94) 0%, rgba(20,2,2,0.85) 50%, rgba(8,0,0,0.96) 100%), url('rumb.jpg');"></div>
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Cataclysm Event</span>
+        <h2 class="section-header" style="color: var(--red-bright); text-shadow: 0 0 15px rgba(255, 26, 26, 0.4);">The Rumbling</h2>
+        <p class="section-subtitle">// The final march of the Wall Titans. The end of the world outside Paradis.</p>
+      </div>
+
+      <div class="rumbling-content fade-in">
+        <div class="rumbling-desc">
+          <p>Upon unlocking the full power of the Founding Titan, Eren Yeager deactivated the hardening of the three walls, releasing hundreds of thousands of Colossal Titans. He commanded them to trample all land and civilizations beyond the island of Paradis, declaring a war of global extinction.</p>
         </div>
 
+        <!-- Interactive Memory Onslaught Widget -->
+        <div class="onslaught-widget">
+          <div class="onslaught-btn-wrapper">
+            <button class="onslaught-trigger-btn" onclick="startErenOnslaught()">
+              [ ACCESS CLASSIFIED MEMORY SEGMENT: EREN'S ONSLAUGHT ]
+            </button>
+          </div>
+
+          <div class="onslaught-display" id="onslaughtDisplay" style="display: none;">
+            <div class="onslaught-bg" id="onslaughtBg" style="background-image: url('ere.jpg');"></div>
+            <div class="onslaught-overlay">
+              <div class="onslaught-metrics">
+                <div class="metric-label">GLOBAL CASUALTY CALCULATOR</div>
+                <div class="metric-count" id="onslaughtCounter">0</div>
+                <div class="metric-percent" id="onslaughtPercent">0.0% OF HUMAN POPULATION ELIMINATED</div>
+              </div>
+              <div class="onslaught-quote" id="onslaughtQuote"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2327,13 +2517,8 @@
         </div>
         <div class="terminal-output" id="termOutput">
           <div class="terminal-line system">Paradis Island Intelligence Network initialized...</div>
-          <div class="terminal-line info">Type "help" to view diagnostic commands.</div>
-          <div class="terminal-line info">Type "status" for wall integrity metrics.</div>
-          <div class="terminal-line info">Hint: Look for redacted information in the archive to find decryption passcodes.</div>
-        </div>
-        <div class="terminal-input-row">
-          <span class="terminal-prompt">PARADIS_OS></span>
-          <input type="text" class="terminal-input-field" id="termInput" autocomplete="off" placeholder="Enter command..." />
+          <div class="terminal-line info">Click preset commands below to query diagnostic databases.</div>
+          <div class="terminal-line info">Decryption packs will print out directly to this console.</div>
         </div>
       </div>
 
@@ -2664,6 +2849,41 @@
     }
     initFadeObs();
 
+    // Titan Cards Color Glow and Hover Flip Logic
+    function initTitanCardHovers() {
+      const cards = document.querySelectorAll('.titan-card');
+      cards.forEach(card => {
+        let hoverTimeout = null;
+
+        card.addEventListener('mouseenter', () => {
+          // Immediately apply the color and glow style via active-hover class
+          card.classList.add('active-hover');
+          
+          // Clear any existing timeout
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          
+          // Set a timeout to flip the card after 2 seconds (2000ms)
+          hoverTimeout = setTimeout(() => {
+            if (card.classList.contains('active-hover')) {
+              card.classList.add('flipped');
+            }
+          }, 2000);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          // Immediately reset both color hover and flipped state
+          card.classList.remove('active-hover');
+          card.classList.remove('flipped');
+          
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = null;
+          }
+        });
+      });
+    }
+    initTitanCardHovers();
+
     // Timeline line draw
     const tline = document.getElementById('tline');
     if (tline) {
@@ -2945,6 +3165,12 @@ Restoring original photographic artifact...`, 'info');
               writeTermLine(`[ DECRYPTION SUCCESSFUL ]
 Retrieving Memory Segment: Fritz Royal Covenant.
 "All paths cross at a single coordinate. It is the tree where the founder Ymir fell, where all Eldian memories are woven like thread. Time does not exist there. Only a desert of sand under a perpetual starry sky."`, 'system');
+              
+              const photoDiv = document.createElement('div');
+              photoDiv.className = 'terminal-photo-embed';
+              photoDiv.innerHTML = `<img src="path.jpg" alt="The Coordinate Paths" />`;
+              termOutput.appendChild(photoDiv);
+              termOutput.scrollTop = termOutput.scrollHeight;
             } else if (arg === 'rumbling') {
               writeTermLine(`[ DECRYPTION SUCCESSFUL ]
 INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
@@ -2958,6 +3184,77 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
             writeTermLine(`PARADIS_OS: Command "${mainCmd}" unrecognized. Type "help" for a list of system calls.`, 'error');
         }
       }, 300);
+    }
+
+    function startErenOnslaught() {
+      const btnWrapper = document.querySelector('.onslaught-btn-wrapper');
+      const display = document.getElementById('onslaughtDisplay');
+      const counter = document.getElementById('onslaughtCounter');
+      const percent = document.getElementById('onslaughtPercent');
+      const quote = document.getElementById('onslaughtQuote');
+      const onslaughtBg = document.getElementById('onslaughtBg');
+      const widget = document.querySelector('.onslaught-widget');
+      
+      // Hide button wrapper, show display
+      btnWrapper.style.display = 'none';
+      display.style.display = 'flex';
+      
+      // Add rumble shake to widget
+      widget.classList.add('shake');
+      
+      // Animate death count up to 1.6 Billion (80% of world population estimated at 2 Billion)
+      let count = 0;
+      const targetCount = 1600000000;
+      const duration = 4000; // 4 seconds
+      const startTime = performance.now();
+      
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing out curve
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentCount = Math.floor(easeProgress * targetCount);
+        
+        counter.textContent = currentCount.toLocaleString();
+        
+        const pct = (easeProgress * 80.0).toFixed(1);
+        percent.textContent = `${pct}% OF GLOBAL POPULATION ELIMINATED`;
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          // Finished counting
+          widget.classList.remove('shake');
+          
+          // Add onslaught-active class to section to trigger fullscreen expansion and fade outs
+          document.getElementById('rumbling-sec').classList.add('onslaught-active');
+          
+          // Fade in ere.jpg background slowly
+          onslaughtBg.style.opacity = '0.45';
+          
+          // Slowly reveal the legendary Eren quote
+          setTimeout(() => {
+            quote.style.opacity = '1';
+            typeQuote(quote, "I'm gonna finish it all. I will wipe out every last one of them from this world.");
+          }, 1200);
+        }
+      }
+      
+      requestAnimationFrame(updateCounter);
+    }
+
+    function typeQuote(element, text) {
+      element.textContent = '';
+      let i = 0;
+      function nextChar() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(nextChar, 45);
+        }
+      }
+      nextChar();
     }
   </script>
 </body>

@@ -1805,6 +1805,85 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
     }
+    
+    /* Fullscreen horror overlay style rules */
+    .horror-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 9999;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 2.5s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .horror-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .horror-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: contrast(1.7) brightness(0.3) saturate(1.4) sepia(0.08) hue-rotate(-10deg);
+      z-index: 1;
+    }
+    .horror-vignette {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle, transparent 15%, rgba(0,0,0,0.96) 88%);
+      z-index: 2;
+    }
+    .horror-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 2.5rem;
+      max-width: 800px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .fullscreen-metrics {
+      margin-bottom: 2rem;
+    }
+    .horror-quote {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--red-bright);
+      line-height: 1.6;
+      text-shadow: 0 0 20px rgba(255, 26, 26, 0.9);
+      min-height: 3.5em;
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+    }
+    .horror-exit-btn {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .horror-exit-btn.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .horror-exit-btn:hover {
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 0 15px rgba(255,255,255,0.15);
+    }
   </style>
 </head>
 <body>
@@ -1814,12 +1893,12 @@
     <a href="#hero" class="nav-logo"><span>AoT</span></a>
     <ul class="nav-links">
       <li><a href="#history" id="nav-history">HISTORY</a></li>
+      <li><a href="#walls" id="nav-walls">WALLS</a></li>
       <li><a href="#titans" id="nav-titans">TITANS</a></li>
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
       <li><a href="#campaigns" id="nav-campaigns">CAMPAIGNS</a></li>
       <li><a href="#rumbling-sec" id="nav-rumbling">RUMBLING</a></li>
-      <li><a href="#walls" id="nav-walls">WALLS</a></li>
       <li><a href="#console-sec" id="nav-console">CONSOLE</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
       <li><a href="#quiz" id="nav-quiz">QUIZ</a></li>
@@ -1963,6 +2042,59 @@
   </section>
 
   </div>
+
+  <!-- THE THREE WALLS -->
+  <section id="walls">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.72) 50%, rgba(8,8,8,0.90) 100%), url('bg_walls.png');"></div>
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Structural Analysis</span>
+        <h2 class="section-header">The Three Walls</h2>
+        <p class="section-subtitle">// They weren't protection. They were a prison. And the secret inside them changed everything.</p>
+      </div>
+      <div class="walls-grid">
+
+        <div class="wall-card fade-in" style="--wall-color:#8B1A1A">
+          <div class="wall-name">Wall Maria</div>
+          <div class="wall-sub">Outermost Wall — First Line of Defense</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">The outermost wall. Home to hundreds of thousands of people, including the Yeager family in Shiganshina. It fell in Year 845 when the Colossal Titan breached the outer gate and the Armored Titan shattered the inner gate. Humanity lost nearly a third of its territory in a single day.</p>
+          <span class="wall-status fallen">Breached — Year 845</span>
+        </div>
+
+        <div class="wall-card fade-in" style="--wall-color:#d4a844">
+          <div class="wall-name">Wall Rose</div>
+          <div class="wall-sub">Middle Wall — Refuge After Maria</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">Millions of Maria survivors flooded Wall Rose after the fall. Five years later, titans appeared inside it — transformed from Ragako village residents by Zeke's Beast Titan power. The wall itself was never breached, but humanity's sense of safety collapsed a second time.</p>
+          <span class="wall-status breached">Infiltrated — Year 850</span>
+        </div>
+
+        <div class="wall-card fade-in" style="--wall-color:#4a7c59">
+          <div class="wall-name">Wall Sina</div>
+          <div class="wall-sub">Innermost Wall — Seat of Power</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">The innermost wall. Home to the royal family, the Military Police, and the wealthiest Eldians. Most never saw a titan in their lives. When the truth came out — that the walls themselves were filled with colossal titans in hardened form — their entire world cracked.</p>
+          <span class="wall-status standing">Standing — Intact</span>
+        </div>
+
+      </div>
+
+      <div class="key-block fade-in">
+        <div class="key-img-wrap">
+          <img src="grisha_key.png" alt="The key to the basement — Grisha Yeager" />
+        </div>
+        <div class="key-text-wrap">
+          <div class="key-label">Evidence — Item 001 — Shiganshina District</div>
+          <div class="key-title">Grisha's Key to the Basement</div>
+          <p class="key-body">Grisha Yeager wore this key around his neck every day and told no one what it opened. On the night Wall Maria fell, he pressed it into Eren's hands and begged him never to forget the basement. It took four years of war to reach it. What they found inside didn't just explain Grisha's past — it broke the entire foundation of what Paradis believed about the world. Memory. History. Identity. All of it was inside that one locked room.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- NINE TITANS -->
   <section id="titans">
@@ -2592,58 +2724,7 @@
     </div>
   </section>
 
-  <!-- THE THREE WALLS -->
-  <section id="walls">
-    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.72) 50%, rgba(8,8,8,0.90) 100%), url('bg_walls.png');"></div>
-    <div class="container">
-      <div class="fade-in">
-        <span class="classified-stamp">Structural Analysis</span>
-        <h2 class="section-header">The Three Walls</h2>
-        <p class="section-subtitle">// They weren't protection. They were a prison. And the secret inside them changed everything.</p>
-      </div>
-      <div class="walls-grid">
 
-        <div class="wall-card fade-in" style="--wall-color:#8B1A1A">
-          <div class="wall-name">Wall Maria</div>
-          <div class="wall-sub">Outermost Wall — First Line of Defense</div>
-          <div class="wall-height">50m</div>
-          <div class="wall-height-label">Estimated Height</div>
-          <p class="wall-desc">The outermost wall. Home to hundreds of thousands of people, including the Yeager family in Shiganshina. It fell in Year 845 when the Colossal Titan breached the outer gate and the Armored Titan shattered the inner gate. Humanity lost nearly a third of its territory in a single day.</p>
-          <span class="wall-status fallen">Breached — Year 845</span>
-        </div>
-
-        <div class="wall-card fade-in" style="--wall-color:#d4a844">
-          <div class="wall-name">Wall Rose</div>
-          <div class="wall-sub">Middle Wall — Refuge After Maria</div>
-          <div class="wall-height">50m</div>
-          <div class="wall-height-label">Estimated Height</div>
-          <p class="wall-desc">Millions of Maria survivors flooded Wall Rose after the fall. Five years later, titans appeared inside it — transformed from Ragako village residents by Zeke's Beast Titan power. The wall itself was never breached, but humanity's sense of safety collapsed a second time.</p>
-          <span class="wall-status breached">Infiltrated — Year 850</span>
-        </div>
-
-        <div class="wall-card fade-in" style="--wall-color:#4a7c59">
-          <div class="wall-name">Wall Sina</div>
-          <div class="wall-sub">Innermost Wall — Seat of Power</div>
-          <div class="wall-height">50m</div>
-          <div class="wall-height-label">Estimated Height</div>
-          <p class="wall-desc">The innermost wall. Home to the royal family, the Military Police, and the wealthiest Eldians. Most never saw a titan in their lives. When the truth came out — that the walls themselves were filled with colossal titans in hardened form — their entire world cracked.</p>
-          <span class="wall-status standing">Standing — Intact</span>
-        </div>
-
-      </div>
-
-      <div class="key-block fade-in">
-        <div class="key-img-wrap">
-          <img src="grisha_key.png" alt="The key to the basement — Grisha Yeager" />
-        </div>
-        <div class="key-text-wrap">
-          <div class="key-label">Evidence — Item 001 — Shiganshina District</div>
-          <div class="key-title">Grisha's Key to the Basement</div>
-          <p class="key-body">Grisha Yeager wore this key around his neck every day and told no one what it opened. On the night Wall Maria fell, he pressed it into Eren's hands and begged him never to forget the basement. It took four years of war to reach it. What they found inside didn't just explain Grisha's past — it broke the entire foundation of what Paradis believed about the world. Memory. History. Identity. All of it was inside that one locked room.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- SIZE COMPARISON -->
   <section id="sizes">
@@ -3266,8 +3347,6 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
       const display = document.getElementById('onslaughtDisplay');
       const counter = document.getElementById('onslaughtCounter');
       const percent = document.getElementById('onslaughtPercent');
-      const quote = document.getElementById('onslaughtQuote');
-      const cinematicBg = document.getElementById('rumblingCinematicBg');
       const widget = document.querySelector('.onslaught-widget');
       
       // Hide button wrapper, show display
@@ -3302,25 +3381,45 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
           // Finished counting
           widget.classList.remove('shake');
           
-          // Add onslaught-active class to section to trigger fullscreen expansion and fade outs
-          document.getElementById('rumbling-sec').classList.add('onslaught-active');
-          
-          // Fade in ere.jpg background slowly
-          cinematicBg.style.backgroundImage = `linear-gradient(180deg, rgba(8,0,0,0.85) 0%, rgba(10,2,2,0.85) 50%, rgba(8,0,0,0.92) 100%), url('ere.jpg')`;
-          cinematicBg.style.opacity = '1';
-          
-          // Slowly reveal the legendary Eren quote
+          // Trigger the fullscreen horror overlay!
           setTimeout(() => {
-            quote.style.opacity = '1';
-            typeQuote(quote, "I'm gonna finish it all. I will wipe out every last one of them from this world.");
-          }, 1200);
+            const overlay = document.getElementById('horrorOverlay');
+            overlay.classList.add('active');
+            
+            // Slowly reveal the legendary Eren quote inside fullscreen overlay
+            const horrorQuote = document.getElementById('horrorQuote');
+            const exitBtn = document.getElementById('horrorExitBtn');
+            setTimeout(() => {
+              typeQuote(horrorQuote, "I'm gonna finish it all. I will wipe out every last one of them from this world.", () => {
+                exitBtn.classList.add('visible');
+              });
+            }, 1000);
+          }, 800);
         }
       }
       
       requestAnimationFrame(updateCounter);
     }
 
-    function typeQuote(element, text) {
+    function closeHorrorOverlay() {
+      const overlay = document.getElementById('horrorOverlay');
+      overlay.classList.remove('active');
+      
+      // Reset the onslaught widget so it can be played again
+      const btnWrapper = document.querySelector('.onslaught-btn-wrapper');
+      const display = document.getElementById('onslaughtDisplay');
+      const horrorQuote = document.getElementById('horrorQuote');
+      const exitBtn = document.getElementById('horrorExitBtn');
+      
+      setTimeout(() => {
+        btnWrapper.style.display = 'block';
+        display.style.display = 'none';
+        horrorQuote.textContent = '';
+        exitBtn.classList.remove('visible');
+      }, 1000);
+    }
+
+    function typeQuote(element, text, callback) {
       element.textContent = '';
       let i = 0;
       function nextChar() {
@@ -3328,10 +3427,27 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
           element.textContent += text.charAt(i);
           i++;
           setTimeout(nextChar, 45);
+        } else if (callback) {
+          callback();
         }
       }
       nextChar();
     }
   </script>
+
+  <!-- FULLSCREEN HORROR OVERLAY -->
+  <div class="horror-overlay" id="horrorOverlay">
+    <div class="horror-bg" style="background-image: url('hor.jpg');"></div>
+    <div class="horror-vignette"></div>
+    <div class="horror-content">
+      <div class="onslaught-metrics fullscreen-metrics">
+        <div class="metric-label" style="letter-spacing: 0.25em;">GLOBAL CASUALTY CALCULATOR</div>
+        <div class="metric-count" style="font-size: 3rem; color: var(--red-bright); text-shadow: 0 0 25px rgba(255, 26, 26, 0.8); font-family: var(--font-heading); margin: 0.5rem 0;">1,600,000,000</div>
+        <div class="metric-percent" style="font-size: 0.9rem; letter-spacing: 0.15em; color: var(--text);">80.0% OF HUMAN POPULATION ELIMINATED</div>
+      </div>
+      <div class="horror-quote" id="horrorQuote"></div>
+      <button class="horror-exit-btn" id="horrorExitBtn" onclick="closeHorrorOverlay()">[ RETURN TO PARADIS ARCHIVE ]</button>
+    </div>
+  </div>
 </body>
 </html>

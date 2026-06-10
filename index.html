@@ -896,21 +896,57 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 5rem 0;
-      transition: background-color 3s ease-in-out;
-      min-height: 550px;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
     }
-    .rumbling-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
+    .rumbling-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3.5rem;
+      align-items: center;
+      transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       z-index: 2;
+      width: 100%;
+    }
+    .rumbling-visual {
+      display: flex;
+      justify-content: center;
+      transition: opacity 1.2s ease-in-out, width 1.2s ease-in-out, margin 1.2s ease-in-out;
+      width: 100%;
+    }
+    .rumbling-img-frame {
+      border: 1px solid var(--red-dim);
+      padding: 0.5rem;
+      background: #000;
+      box-shadow: 0 0 25px rgba(255, 26, 26, 0.15);
+      border-radius: 4px;
+      max-width: 420px;
+    }
+    .rumbling-portrait-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+      filter: grayscale(0.2) contrast(1.1) brightness(0.9);
+      transition: filter 0.5s ease;
+    }
+    .rumbling-portrait-img:hover {
+      filter: grayscale(0) contrast(1.2) brightness(1.0);
+    }
+    .rumbling-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .rumbling-desc {
       font-size: 1rem;
       color: var(--text);
       line-height: 1.8;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       opacity: 0.95;
       transition: opacity 1.5s ease-in-out;
     }
@@ -925,37 +961,45 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 0 30px rgba(0,0,0,0.8);
       width: 100%;
+      transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
-    /* Fullscreen expansion of widget during onslaught event */
+    /* Onslaught Active State transitions - Center widget absolutely, prevent collapses */
+    #rumbling-sec.onslaught-active .container,
+    #rumbling-sec.onslaught-active .rumbling-layout,
+    #rumbling-sec.onslaught-active .rumbling-info {
+      position: static !important;
+      transform: none !important;
+    }
+    #rumbling-sec.onslaught-active .rumbling-visual {
+      opacity: 0 !important;
+      pointer-events: none;
+      transition: opacity 1.2s ease-in-out;
+    }
+    #rumbling-sec.onslaught-active .rumbling-info .classified-stamp,
+    #rumbling-sec.onslaught-active .rumbling-info .section-header,
+    #rumbling-sec.onslaught-active .rumbling-info .rumbling-desc {
+      opacity: 0 !important;
+      pointer-events: none;
+      transition: opacity 1.2s ease-in-out;
+    }
     #rumbling-sec.onslaught-active .onslaught-widget {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      min-height: 100%;
-      border: none;
-      background: transparent;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 800px;
       z-index: 10;
+      background: transparent;
+      border: none;
       box-shadow: none;
     }
-    #rumbling-sec.onslaught-active .container {
-      position: static;
-    }
-    #rumbling-sec.onslaught-active .container > .fade-in {
-      opacity: 0 !important;
-      pointer-events: none;
-      transition: opacity 1.5s ease-in-out;
-    }
-    #rumbling-sec.onslaught-active .rumbling-desc {
-      opacity: 0 !important;
-      pointer-events: none;
-      transition: opacity 1.5s ease-in-out;
-    }
     #rumbling-sec.onslaught-active .cinematic-bg {
-      opacity: 0 !important;
-      transition: opacity 2s ease-in-out;
+      filter: contrast(1.65) brightness(0.6) saturate(1.4);
+      opacity: 0.95 !important;
     }
 
     .onslaught-btn-wrapper {
@@ -2098,7 +2142,7 @@
           <div class="titan-card-inner">
             <div class="titan-front">
               <div class="titan-img-container">
-                <img src="titan_jaw.png" alt="Jaw Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.3) brightness(0.75) sepia(0.15);" />
+                <img src="titan_jaw.png" alt="Jaw Titan" class="titan-card-img" />
               </div>
               <div>
                 <div class="titan-file-no">FILE-007 / 009</div>
@@ -2125,7 +2169,7 @@
           <div class="titan-card-inner">
             <div class="titan-front">
               <div class="titan-img-container">
-                <img src="titan_cart.png" alt="Cart Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.15) brightness(0.85) sepia(0.2) hue-rotate(30deg);" />
+                <img src="titan_cart.png" alt="Cart Titan" class="titan-card-img" />
               </div>
               <div>
                 <div class="titan-file-no">FILE-008 / 009</div>
@@ -2152,7 +2196,7 @@
           <div class="titan-card-inner">
             <div class="titan-front">
               <div class="titan-img-container">
-                <img src="titan_warhammer.png" alt="War Hammer Titan" class="titan-card-img" style="filter: grayscale(1) contrast(1.4) brightness(0.65) sepia(0.05);" />
+                <img src="titan_warhammer.png" alt="War Hammer Titan" class="titan-card-img" />
               </div>
               <div>
                 <div class="titan-file-no">FILE-009 / 009</div>
@@ -2376,39 +2420,48 @@
 
   <!-- THE RUMBLING SECTION -->
   <section id="rumbling-sec">
-    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,0,0,0.94) 0%, rgba(20,2,2,0.85) 50%, rgba(8,0,0,0.96) 100%), url('rumb.jpg');"></div>
+    <div class="cinematic-bg" id="rumblingCinematicBg" style="background-image: linear-gradient(180deg, rgba(8,0,0,0.96) 0%, rgba(10,2,2,0.9) 50%, rgba(8,0,0,0.98) 100%); transition: background-image 2.5s ease-in-out, opacity 2.5s ease-in-out;"></div>
     <div class="container">
-      <div class="fade-in">
-        <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Cataclysm Event</span>
-        <h2 class="section-header" style="color: var(--red-bright); text-shadow: 0 0 15px rgba(255, 26, 26, 0.4);">The Rumbling</h2>
-        <p class="section-subtitle">// The final march of the Wall Titans. The end of the world outside Paradis.</p>
-      </div>
-
-      <div class="rumbling-content fade-in">
-        <div class="rumbling-desc">
-          <p>Upon unlocking the full power of the Founding Titan, Eren Yeager deactivated the hardening of the three walls, releasing hundreds of thousands of Colossal Titans. He commanded them to trample all land and civilizations beyond the island of Paradis, declaring a war of global extinction.</p>
+      <div class="rumbling-layout" id="rumblingLayout">
+        
+        <!-- Left: Portrait Image -->
+        <div class="rumbling-visual fade-in">
+          <div class="rumbling-img-frame">
+            <img src="rumb.jpg" alt="The Rumbling" class="rumbling-portrait-img" />
+          </div>
         </div>
 
-        <!-- Interactive Memory Onslaught Widget -->
-        <div class="onslaught-widget">
-          <div class="onslaught-btn-wrapper">
-            <button class="onslaught-trigger-btn" onclick="startErenOnslaught()">
-              [ ACCESS CLASSIFIED MEMORY SEGMENT: EREN'S ONSLAUGHT ]
-            </button>
+        <!-- Right: Text & Widget -->
+        <div class="rumbling-info fade-in">
+          <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Cataclysm Event</span>
+          <h2 class="section-header" style="color: var(--red-bright); text-shadow: 0 0 15px rgba(255, 26, 26, 0.4); margin: 0.5rem 0 1.2rem 0;">The Rumbling</h2>
+          
+          <div class="rumbling-desc">
+            <p>Upon unlocking the full power of the Founding Titan, Eren Yeager deactivated the hardening of the three walls, releasing hundreds of thousands of Colossal Titans. He commanded them to trample all land and civilizations beyond the island of Paradis, declaring a war of global extinction.</p>
           </div>
 
-          <div class="onslaught-display" id="onslaughtDisplay" style="display: none;">
-            <div class="onslaught-bg" id="onslaughtBg" style="background-image: url('ere.jpg');"></div>
-            <div class="onslaught-overlay">
-              <div class="onslaught-metrics">
-                <div class="metric-label">GLOBAL CASUALTY CALCULATOR</div>
-                <div class="metric-count" id="onslaughtCounter">0</div>
-                <div class="metric-percent" id="onslaughtPercent">0.0% OF HUMAN POPULATION ELIMINATED</div>
+          <!-- Interactive Memory Onslaught Widget -->
+          <div class="onslaught-widget">
+            <div class="onslaught-btn-wrapper">
+              <button class="onslaught-trigger-btn" onclick="startErenOnslaught()">
+                [ ACCESS CLASSIFIED MEMORY SEGMENT: EREN'S ONSLAUGHT ]
+              </button>
+            </div>
+
+            <div class="onslaught-display" id="onslaughtDisplay" style="display: none; width: 100%;">
+              <div class="onslaught-overlay">
+                <div class="onslaught-metrics">
+                  <div class="metric-label">GLOBAL CASUALTY CALCULATOR</div>
+                  <div class="metric-count" id="onslaughtCounter">0</div>
+                  <div class="metric-percent" id="onslaughtPercent">0.0% OF HUMAN POPULATION ELIMINATED</div>
+                </div>
+                <div class="onslaught-quote" id="onslaughtQuote"></div>
               </div>
-              <div class="onslaught-quote" id="onslaughtQuote"></div>
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   </section>
@@ -2862,12 +2915,12 @@
           // Clear any existing timeout
           if (hoverTimeout) clearTimeout(hoverTimeout);
           
-          // Set a timeout to flip the card after 2 seconds (2000ms)
+          // Set a timeout to flip the card after 1.3 seconds (1300ms)
           hoverTimeout = setTimeout(() => {
             if (card.classList.contains('active-hover')) {
               card.classList.add('flipped');
             }
-          }, 2000);
+          }, 1300);
         });
 
         card.addEventListener('mouseleave', () => {
@@ -3091,18 +3144,33 @@ STATUS: DECEASED (Battle of Shiganshina)
 RECORD: Led the Survey Corps through its most grueling years. Devised the Long-Distance Enemy Scouting Formation.
 LAST ACTION: Led a suicide cavalry charge directly into the Beast Titan's bombardment, securing a window of opportunity for Captain Levi to strike.
 LEGACY: "My soldiers, rage! My soldiers, scream! My soldiers, fight!"`, 'info');
+              const photoDiv = document.createElement('div');
+              photoDiv.className = 'terminal-photo-embed';
+              photoDiv.innerHTML = `<img src="erwin.jpg" alt="Commander Erwin Smith" />`;
+              termOutput.appendChild(photoDiv);
+              termOutput.scrollTop = termOutput.scrollHeight;
             } else if (arg === 'levi') {
               writeTermLine(`=== SOLDIER LOG: CAPTAIN LEVI ACKERMAN ===
 STATUS: ACTIVE (Humanity's Strongest Soldier)
 RECORD: Leader of the Special Operations Squad. Legendary combat prowess with over 200 confirmed titan kills.
 NOTABLE ACTIONS: Decimated the Beast Titan twice. Handled the capture of the Female Titan.
 CURRENT STATE: Severely injured but active in final joint operations.`, 'info');
+              const photoDiv = document.createElement('div');
+              photoDiv.className = 'terminal-photo-embed';
+              photoDiv.innerHTML = `<img src="levi.jpg" alt="Captain Levi Ackerman" />`;
+              termOutput.appendChild(photoDiv);
+              termOutput.scrollTop = termOutput.scrollHeight;
             } else if (arg === 'hange') {
               writeTermLine(`=== SOLDIER LOG: COMMANDER HANGE ZOË ===
 STATUS: DECEASED (Battle of Heaven and Earth)
 RECORD: Lead Titan researcher, succeeded Erwin Smith as Commander of the Survey Corps.
 LAST ACTION: Stood alone against the advancing Wall Titans of the Rumbling, burning to death while slowing them down to allow the aircraft escape.
 LEGACY: Devoted her heart to scientific discovery and the future of humanity.`, 'info');
+              const photoDiv = document.createElement('div');
+              photoDiv.className = 'terminal-photo-embed';
+              photoDiv.innerHTML = `<img src="hange.jpg" alt="Commander Hange Zoe" />`;
+              termOutput.appendChild(photoDiv);
+              termOutput.scrollTop = termOutput.scrollHeight;
             } else {
               writeTermLine(`ERROR: Scout "${arg}" not found in local database records.`, 'error');
             }
@@ -3135,6 +3203,13 @@ INITIALIZING TITAN SPINAL FLUID INJECTION PROTOCOL...
 CAUTION: Administration of titan serum will induce permanent transformation into a Pure Titan unless a Titan Shifter is consumed immediately.
 --------------------------------------------------
 Do you wish to proceed? [ADMIN PRESET TRIGGERED]`, 'error');
+            
+            const serumDiv = document.createElement('div');
+            serumDiv.className = 'terminal-photo-embed';
+            serumDiv.innerHTML = `<img src="serum.jpg" alt="Titan Serum Syringe" />`;
+            termOutput.appendChild(serumDiv);
+            termOutput.scrollTop = termOutput.scrollHeight;
+
             setTimeout(() => {
               const screen = document.querySelector('.terminal-screen');
               screen.style.borderColor = '#ff1a1a';
@@ -3192,7 +3267,7 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
       const counter = document.getElementById('onslaughtCounter');
       const percent = document.getElementById('onslaughtPercent');
       const quote = document.getElementById('onslaughtQuote');
-      const onslaughtBg = document.getElementById('onslaughtBg');
+      const cinematicBg = document.getElementById('rumblingCinematicBg');
       const widget = document.querySelector('.onslaught-widget');
       
       // Hide button wrapper, show display
@@ -3231,7 +3306,8 @@ INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
           document.getElementById('rumbling-sec').classList.add('onslaught-active');
           
           // Fade in ere.jpg background slowly
-          onslaughtBg.style.opacity = '0.45';
+          cinematicBg.style.backgroundImage = `linear-gradient(180deg, rgba(8,0,0,0.85) 0%, rgba(10,2,2,0.85) 50%, rgba(8,0,0,0.92) 100%), url('ere.jpg')`;
+          cinematicBg.style.opacity = '1';
           
           // Slowly reveal the legendary Eren quote
           setTimeout(() => {

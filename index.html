@@ -844,6 +844,140 @@
     @media (max-width: 450px)  { .lore-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
+       DECRYPTION CONSOLE (CRT TERMINAL)
+    ============================================================ */
+    #console-sec {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0;
+    }
+    .terminal-screen {
+      background: #050705;
+      border: 3px solid #1f351f;
+      border-radius: 6px;
+      box-shadow: 0 0 40px rgba(31,53,31,0.25), inset 0 0 30px rgba(0,0,0,0.95);
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-mono);
+      color: #3f8f3f;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    /* CRT Scanline Filter */
+    .terminal-screen::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 2;
+      background-size: 100% 3px, 3px 100%;
+      pointer-events: none;
+    }
+    /* CRT Flicker */
+    .terminal-screen::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 16, 16, 0.06);
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+      animation: crtFlicker 0.15s infinite;
+    }
+    @keyframes crtFlicker {
+      0% { opacity: 0.15; }
+      50% { opacity: 0.05; }
+      100% { opacity: 0.15; }
+    }
+    .terminal-header {
+      border-bottom: 1px solid #1f351f;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      display: flex;
+      justify-content: space-between;
+    }
+    .terminal-output {
+      height: 320px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      letter-spacing: 0.05em;
+      padding-right: 1rem;
+    }
+    .terminal-output::-webkit-scrollbar {
+      width: 6px;
+    }
+    .terminal-output::-webkit-scrollbar-thumb {
+      background: #1f351f;
+    }
+    .terminal-line {
+      margin-bottom: 0.6rem;
+      white-space: pre-wrap;
+    }
+    .terminal-line.info { color: #5fb85f; }
+    .terminal-line.error { color: var(--red-bright); }
+    .terminal-line.system { color: var(--gold); }
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #1f351f;
+      padding-top: 1rem;
+    }
+    .terminal-prompt {
+      margin-right: 0.8rem;
+      font-weight: bold;
+    }
+    .terminal-input-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #3f8f3f;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .terminal-quick-cmds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .term-btn {
+      background: transparent;
+      border: 1px solid #1f351f;
+      color: #3f8f3f;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .term-btn:hover {
+      background: rgba(31,53,31,0.2);
+      border-color: #3f8f3f;
+      color: #5fb85f;
+    }
+    .terminal-photo-embed {
+      width: 280px;
+      margin: 1rem 0;
+      border: 1px solid #1f351f;
+      padding: 4px;
+      background: #020302;
+    }
+    .terminal-photo-embed img {
+      width: 100%;
+      display: block;
+      filter: grayscale(1) contrast(1.2);
+    }
+
+    /* ============================================================
        THE THREE WALLS
     ============================================================ */
     #walls {
@@ -1316,6 +1450,7 @@
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
       <li><a href="#walls" id="nav-walls">WALLS</a></li>
+      <li><a href="#console-sec" id="nav-console">CONSOLE</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
       <li><a href="#quiz" id="nav-quiz">QUIZ</a></li>
     </ul>
@@ -1931,6 +2066,43 @@
     </div>
   </section>
 
+  <!-- DECRYPTION CONSOLE -->
+  <section id="console-sec">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Terminal Uplink</span>
+        <h2 class="section-header">Tactical Console</h2>
+        <p class="section-subtitle">// Query Paradis intelligence databases. Decrypt restricted evidence packets using hidden terminal codes.</p>
+      </div>
+
+      <div class="terminal-screen fade-in">
+        <div class="terminal-header">
+          <span>SYSTEM: PARADIS_OS V4.81</span>
+          <span>UPLINK: ACTIVE</span>
+        </div>
+        <div class="terminal-output" id="termOutput">
+          <div class="terminal-line system">Paradis Island Intelligence Network initialized...</div>
+          <div class="terminal-line info">Type "help" to view diagnostic commands.</div>
+          <div class="terminal-line info">Type "status" for wall integrity metrics.</div>
+          <div class="terminal-line info">Hint: Look for redacted information in the archive to find decryption passcodes.</div>
+        </div>
+        <div class="terminal-input-row">
+          <span class="terminal-prompt">PARADIS_OS></span>
+          <input type="text" class="terminal-input-field" id="termInput" autocomplete="off" placeholder="Enter command..." />
+        </div>
+      </div>
+
+      <div class="terminal-quick-cmds fade-in">
+        <button class="term-btn" onclick="runTermCmd('help')">run: help</button>
+        <button class="term-btn" onclick="runTermCmd('status')">run: status</button>
+        <button class="term-btn" onclick="runTermCmd('decrypt basement')">decrypt: basement</button>
+        <button class="term-btn" onclick="runTermCmd('decrypt path')">decrypt: path</button>
+        <button class="term-btn" onclick="runTermCmd('decrypt rumbling')">decrypt: rumbling</button>
+        <button class="term-btn" onclick="runTermCmd('clear')">clear console</button>
+      </div>
+    </div>
+  </section>
+
   <!-- THE THREE WALLS -->
   <section id="walls">
     <div class="container">
@@ -2353,6 +2525,105 @@
       document.getElementById('quizSubmit').disabled = true;
       document.getElementById('quizResult').classList.remove('show');
       window.scrollTo({ top: document.getElementById('quiz').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    // ============================================================
+    // DECRYPTION TERMINAL CONSOLE LOGIC
+    // ============================================================
+    const termInput = document.getElementById('termInput');
+    const termOutput = document.getElementById('termOutput');
+
+    if (termInput) {
+      termInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          const rawCmd = this.value;
+          this.value = '';
+          executeCommand(rawCmd);
+        }
+      });
+    }
+
+    function writeTermLine(text, type = 'info') {
+      const line = document.createElement('div');
+      line.className = `terminal-line ${type}`;
+      line.innerHTML = text;
+      termOutput.appendChild(line);
+      termOutput.scrollTop = termOutput.scrollHeight;
+    }
+
+    function runTermCmd(cmdStr) {
+      if (termInput) termInput.value = cmdStr;
+      executeCommand(cmdStr);
+      if (termInput) termInput.value = '';
+    }
+
+    function executeCommand(rawCmd) {
+      const cleanCmd = rawCmd.trim().toLowerCase();
+      if (!cleanCmd) return;
+
+      writeTermLine(`PARADIS_OS> ${rawCmd}`, 'system');
+
+      // Processing simulation
+      writeTermLine(`Processing query...`, 'info');
+
+      setTimeout(() => {
+        const parts = cleanCmd.split(' ');
+        const mainCmd = parts[0];
+        const arg = parts.slice(1).join(' ');
+
+        switch(mainCmd) {
+          case 'help':
+            writeTermLine(`Available Diagnostics Commands:
+  - <b>status</b> : Show wall status, defensive parameters, and titan count.
+  - <b>decrypt &lt;code&gt;</b> : Unlock encrypted intel reports.
+  - <b>clear</b> : Clear the terminal output console.
+  - <b>help</b> : Display this command registry index.`, 'info');
+            break;
+
+          case 'clear':
+            termOutput.innerHTML = '';
+            break;
+
+          case 'status':
+            writeTermLine(`=== PARADIS INTEGRITY & METRICS REPORT ===
+WALL MARIA : [ BREACHED - STATUS: LOST ]
+WALL ROSE  : [ BREACHED - SECURED VIA ROCK BLOCK ]
+WALL SINA  : [ INTACT - CONTAINS COLOSSAL TITANS ]
+SURVEY CORPS ACTIVE DUTY : [ 9 SURVIVORS ]
+FOUNDING TITAN COORDINATE STATUS : [ ELDIAN PATHS LINKED ]`, 'system');
+            break;
+
+          case 'decrypt':
+            if (!arg) {
+              writeTermLine(`ERROR: Missing decrypt argument. Usage: decrypt &lt;passcode&gt;`, 'error');
+            } else if (arg === 'basement') {
+              writeTermLine(`[ DECRYPTION SUCCESSFUL ]
+Accessing Grisha Yeager's hidden desk compartment.
+Restoring original photographic artifact...`, 'info');
+              
+              const photoDiv = document.createElement('div');
+              photoDiv.className = 'terminal-photo-embed';
+              photoDiv.innerHTML = `<img src="family_photo.png" alt="Grisha's Family Photograph" />`;
+              termOutput.appendChild(photoDiv);
+              writeTermLine(`ANALYSIS: This photograph is proof of life beyond the walls. Grisha Yeager, Dina Fritz, and a young Zeke Yeager in the city of Liberio. Humanity has not perished.`, 'system');
+              termOutput.scrollTop = termOutput.scrollHeight;
+            } else if (arg === 'path') {
+              writeTermLine(`[ DECRYPTION SUCCESSFUL ]
+Retrieving Memory Segment: Fritz Royal Covenant.
+"All paths cross at a single coordinate. It is the tree where the founder Ymir fell, where all Eldian memories are woven like thread. Time does not exist there. Only a desert of sand under a perpetual starry sky."`, 'system');
+            } else if (arg === 'rumbling') {
+              writeTermLine(`[ DECRYPTION SUCCESSFUL ]
+INTERCEPTING COORDINATE BROADCAST: EREN YEAGER.
+"To all Subjects of Ymir. My name is Eren Yeager. The walls of Paradis have crumbled. All titans inside them have begun to march. My goal is to protect the people of Paradis, who bore me. The world outside will not stop until every last one of us is dead. I reject that desire. I will trample all land beyond this island until every last life is wiped out."`, 'error');
+            } else {
+              writeTermLine(`DECRYPTION FAILED: Passcode "${arg}" does not match any known classified archive keys. Check redacted logs.`, 'error');
+            }
+            break;
+
+          default:
+            writeTermLine(`PARADIS_OS: Command "${mainCmd}" unrecognized. Type "help" for a list of system calls.`, 'error');
+        }
+      }, 300);
     }
   </script>
 </body>

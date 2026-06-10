@@ -168,7 +168,6 @@ Made with obsession, lore knowledge, and zero sleep.
 
 <div align="center">
 
-**[ SNK ARCHIVE — CLASSIFIED ]**
 
 *Dedicate Your Heart.*
 

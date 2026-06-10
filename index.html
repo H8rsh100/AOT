@@ -1826,9 +1826,10 @@
     .horror-bg {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-size: cover;
+      background-size: contain;
       background-position: center;
-      filter: contrast(1.7) brightness(0.3) saturate(1.4) sepia(0.08) hue-rotate(-10deg);
+      background-repeat: no-repeat;
+      filter: contrast(1.5) brightness(0.48) saturate(1.3) sepia(0.08) hue-rotate(-5deg);
       z-index: 1;
     }
     .horror-vignette {
@@ -1898,9 +1899,9 @@
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
       <li><a href="#campaigns" id="nav-campaigns">CAMPAIGNS</a></li>
-      <li><a href="#rumbling-sec" id="nav-rumbling">RUMBLING</a></li>
       <li><a href="#console-sec" id="nav-console">CONSOLE</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
+      <li><a href="#rumbling-sec" id="nav-rumbling">RUMBLING</a></li>
       <li><a href="#quiz" id="nav-quiz">QUIZ</a></li>
     </ul>
   </nav>
@@ -2550,50 +2551,41 @@
     </div>
   </section>
 
-  <!-- THE RUMBLING SECTION -->
-  <section id="rumbling-sec">
-    <div class="cinematic-bg" id="rumblingCinematicBg" style="background-image: linear-gradient(180deg, rgba(8,0,0,0.96) 0%, rgba(10,2,2,0.9) 50%, rgba(8,0,0,0.98) 100%); transition: background-image 2.5s ease-in-out, opacity 2.5s ease-in-out;"></div>
+  <!-- DECRYPTION CONSOLE -->
+  <section id="console-sec">
+    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.92) 50%, rgba(8,8,8,0.96) 100%), url('bg_console.png'); opacity: 0.5;"></div>
     <div class="container">
-      <div class="rumbling-layout" id="rumblingLayout">
-        
-        <!-- Left: Portrait Image -->
-        <div class="rumbling-visual fade-in">
-          <div class="rumbling-img-frame">
-            <img src="rumb.jpg" alt="The Rumbling" class="rumbling-portrait-img" />
-          </div>
+      <div class="fade-in">
+        <span class="classified-stamp">Terminal Uplink</span>
+        <h2 class="section-header">Tactical Console</h2>
+        <p class="section-subtitle">// Query Paradis intelligence databases. Decrypt restricted evidence packets using hidden terminal codes.</p>
+      </div>
+
+      <div class="terminal-screen fade-in">
+        <div class="terminal-header">
+          <span>SYSTEM: PARADIS_OS V4.81</span>
+          <span>UPLINK: ACTIVE</span>
         </div>
-
-        <!-- Right: Text & Widget -->
-        <div class="rumbling-info fade-in">
-          <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Cataclysm Event</span>
-          <h2 class="section-header" style="color: var(--red-bright); text-shadow: 0 0 15px rgba(255, 26, 26, 0.4); margin: 0.5rem 0 1.2rem 0;">The Rumbling</h2>
-          
-          <div class="rumbling-desc">
-            <p>Upon unlocking the full power of the Founding Titan, Eren Yeager deactivated the hardening of the three walls, releasing hundreds of thousands of Colossal Titans. He commanded them to trample all land and civilizations beyond the island of Paradis, declaring a war of global extinction.</p>
-          </div>
-
-          <!-- Interactive Memory Onslaught Widget -->
-          <div class="onslaught-widget">
-            <div class="onslaught-btn-wrapper">
-              <button class="onslaught-trigger-btn" onclick="startErenOnslaught()">
-                [ ACCESS CLASSIFIED MEMORY SEGMENT: EREN'S ONSLAUGHT ]
-              </button>
-            </div>
-
-            <div class="onslaught-display" id="onslaughtDisplay" style="display: none; width: 100%;">
-              <div class="onslaught-overlay">
-                <div class="onslaught-metrics">
-                  <div class="metric-label">GLOBAL CASUALTY CALCULATOR</div>
-                  <div class="metric-count" id="onslaughtCounter">0</div>
-                  <div class="metric-percent" id="onslaughtPercent">0.0% OF HUMAN POPULATION ELIMINATED</div>
-                </div>
-                <div class="onslaught-quote" id="onslaughtQuote"></div>
-              </div>
-            </div>
-          </div>
-
+        <div class="terminal-output" id="termOutput">
+          <div class="terminal-line system">Paradis Island Intelligence Network initialized...</div>
+          <div class="terminal-line info">Click preset commands below to query diagnostic databases.</div>
+          <div class="terminal-line info">Decryption packs will print out directly to this console.</div>
         </div>
+      </div>
 
+      <div class="terminal-quick-cmds fade-in">
+        <button class="term-btn" onclick="runTermCmd('help')">run: help</button>
+        <button class="term-btn" onclick="runTermCmd('status')">run: status</button>
+        <button class="term-btn" onclick="runTermCmd('campaigns')">run: campaigns</button>
+        <button class="term-btn" onclick="runTermCmd('wall_status')">run: wall_status</button>
+        <button class="term-btn" onclick="runTermCmd('rumbling')">run: rumbling</button>
+        <button class="term-btn" onclick="runTermCmd('scout erwin')">scout: erwin</button>
+        <button class="term-btn" onclick="runTermCmd('scout levi')">scout: levi</button>
+        <button class="term-btn" onclick="runTermCmd('scout hange')">scout: hange</button>
+        <button class="term-btn" onclick="runTermCmd('decrypt basement')">decrypt: basement</button>
+        <button class="term-btn" onclick="runTermCmd('decrypt path')">decrypt: path</button>
+        <button class="term-btn" onclick="runTermCmd('inject_serum')" style="color: var(--red-bright); border-color: var(--red-dim);">run: inject_serum</button>
+        <button class="term-btn" onclick="runTermCmd('clear')">clear console</button>
       </div>
     </div>
   </section>
@@ -2685,41 +2677,50 @@
     </div>
   </section>
 
-  <!-- DECRYPTION CONSOLE -->
-  <section id="console-sec">
-    <div class="cinematic-bg bg-move-2" style="background-image: linear-gradient(180deg, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.92) 50%, rgba(8,8,8,0.96) 100%), url('bg_console.png'); opacity: 0.5;"></div>
+  <!-- THE RUMBLING SECTION -->
+  <section id="rumbling-sec">
+    <div class="cinematic-bg" id="rumblingCinematicBg" style="background-image: linear-gradient(180deg, rgba(8,0,0,0.96) 0%, rgba(10,2,2,0.9) 50%, rgba(8,0,0,0.98) 100%); transition: background-image 2.5s ease-in-out, opacity 2.5s ease-in-out;"></div>
     <div class="container">
-      <div class="fade-in">
-        <span class="classified-stamp">Terminal Uplink</span>
-        <h2 class="section-header">Tactical Console</h2>
-        <p class="section-subtitle">// Query Paradis intelligence databases. Decrypt restricted evidence packets using hidden terminal codes.</p>
-      </div>
-
-      <div class="terminal-screen fade-in">
-        <div class="terminal-header">
-          <span>SYSTEM: PARADIS_OS V4.81</span>
-          <span>UPLINK: ACTIVE</span>
+      <div class="rumbling-layout" id="rumblingLayout">
+        
+        <!-- Left: Portrait Image -->
+        <div class="rumbling-visual fade-in">
+          <div class="rumbling-img-frame">
+            <img src="rumb.jpg" alt="The Rumbling" class="rumbling-portrait-img" />
+          </div>
         </div>
-        <div class="terminal-output" id="termOutput">
-          <div class="terminal-line system">Paradis Island Intelligence Network initialized...</div>
-          <div class="terminal-line info">Click preset commands below to query diagnostic databases.</div>
-          <div class="terminal-line info">Decryption packs will print out directly to this console.</div>
-        </div>
-      </div>
 
-      <div class="terminal-quick-cmds fade-in">
-        <button class="term-btn" onclick="runTermCmd('help')">run: help</button>
-        <button class="term-btn" onclick="runTermCmd('status')">run: status</button>
-        <button class="term-btn" onclick="runTermCmd('campaigns')">run: campaigns</button>
-        <button class="term-btn" onclick="runTermCmd('wall_status')">run: wall_status</button>
-        <button class="term-btn" onclick="runTermCmd('rumbling')">run: rumbling</button>
-        <button class="term-btn" onclick="runTermCmd('scout erwin')">scout: erwin</button>
-        <button class="term-btn" onclick="runTermCmd('scout levi')">scout: levi</button>
-        <button class="term-btn" onclick="runTermCmd('scout hange')">scout: hange</button>
-        <button class="term-btn" onclick="runTermCmd('decrypt basement')">decrypt: basement</button>
-        <button class="term-btn" onclick="runTermCmd('decrypt path')">decrypt: path</button>
-        <button class="term-btn" onclick="runTermCmd('inject_serum')" style="color: var(--red-bright); border-color: var(--red-dim);">run: inject_serum</button>
-        <button class="term-btn" onclick="runTermCmd('clear')">clear console</button>
+        <!-- Right: Text & Widget -->
+        <div class="rumbling-info fade-in">
+          <span class="classified-stamp" style="color: var(--red-bright); border-color: var(--red-dim);">Cataclysm Event</span>
+          <h2 class="section-header" style="color: var(--red-bright); text-shadow: 0 0 15px rgba(255, 26, 26, 0.4); margin: 0.5rem 0 1.2rem 0;">The Rumbling</h2>
+          
+          <div class="rumbling-desc">
+            <p>Upon unlocking the full power of the Founding Titan, Eren Yeager deactivated the hardening of the three walls, releasing hundreds of thousands of Colossal Titans. He commanded them to trample all land and civilizations beyond the island of Paradis, declaring a war of global extinction.</p>
+          </div>
+
+          <!-- Interactive Memory Onslaught Widget -->
+          <div class="onslaught-widget">
+            <div class="onslaught-btn-wrapper">
+              <button class="onslaught-trigger-btn" onclick="startErenOnslaught()">
+                [ ACCESS CLASSIFIED MEMORY SEGMENT: EREN'S ONSLAUGHT ]
+              </button>
+            </div>
+
+            <div class="onslaught-display" id="onslaughtDisplay" style="display: none; width: 100%;">
+              <div class="onslaught-overlay">
+                <div class="onslaught-metrics">
+                  <div class="metric-label">GLOBAL CASUALTY CALCULATOR</div>
+                  <div class="metric-count" id="onslaughtCounter">0</div>
+                  <div class="metric-percent" id="onslaughtPercent">0.0% OF HUMAN POPULATION ELIMINATED</div>
+                </div>
+                <div class="onslaught-quote" id="onslaughtQuote"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </section>

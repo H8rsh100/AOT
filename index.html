@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SNK Archive — AoT Lore Encyclopedia</title>
+  <title>AoT Archive — Attack on Titan Lore Encyclopedia</title>
   <meta name="description" content="A classified military archive of Attack on Titan lore. Explore 2,000 years of Eldian history, the Nine Titans, key figures, factions, and the truth beyond the walls." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -180,8 +180,17 @@
     }
 
     /* ============================================================
-       HERO SECTION
+       BACKGROUND DRIFT ANIMATIONS — living background effect
     ============================================================ */
+    @keyframes bgDriftHero  { 0%,100%{background-position:50% 50%} 50%{background-position:53% 55%} }
+    @keyframes bgDrift1     { 0%,100%{background-position:50% 40%} 50%{background-position:53% 44%} }
+    @keyframes bgDrift2     { 0%,100%{background-position:55% 30%} 50%{background-position:50% 35%} }
+    @keyframes bgDrift3     { 0%,100%{background-position:50% 20%} 50%{background-position:47% 24%} }
+    @keyframes bgDrift4     { 0%,100%{background-position:50% 35%} 50%{background-position:52% 40%} }
+    @keyframes bgDrift5     { 0%,100%{background-position:50% 40%} 50%{background-position:48% 37%} }
+    @keyframes bgDrift6     { 0%,100%{background-position:50% 40%} 50%{background-position:53% 43%} }
+    @keyframes bgDrift7     { 0%,100%{background-position:50% 40%} 50%{background-position:50% 45%} }
+
     #hero {
       position: relative;
       height: 100vh;
@@ -196,6 +205,7 @@
       background:
         linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.95) 100%),
         url('bg_hero.png') center/cover no-repeat;
+      animation: bgDriftHero 25s ease-in-out infinite;
     }
     /* Fog + grain overlay */
     #hero::before {
@@ -319,7 +329,8 @@
     #history {
       background:
         linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.82) 50%, rgba(8,8,8,0.94) 100%),
-        url('bg_history.png') center/cover no-repeat fixed;
+        url('bg_history.png') 50% 40%/cover no-repeat;
+      animation: bgDrift1 22s ease-in-out infinite;
     }
 
     .timeline-wrap {
@@ -434,7 +445,8 @@
     #titans {
       background:
         linear-gradient(180deg, rgba(17,17,17,0.90) 0%, rgba(17,17,17,0.84) 50%, rgba(17,17,17,0.94) 100%),
-        url('bg_titans.png') center 30%/cover no-repeat fixed;
+        url('bg_titans.png') 55% 30%/cover no-repeat;
+      animation: bgDrift2 28s ease-in-out infinite;
     }
 
     .titans-grid {
@@ -575,7 +587,8 @@
     #factions {
       background:
         linear-gradient(180deg, rgba(8,8,8,0.87) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.93) 100%),
-        url('bg_factions.png') center/cover no-repeat fixed;
+        url('bg_factions.png') 50% 20%/cover no-repeat;
+      animation: bgDrift3 20s ease-in-out infinite;
     }
 
     .factions-grid {
@@ -656,7 +669,8 @@
     #figures {
       background:
         linear-gradient(180deg, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.82) 50%, rgba(17,17,17,0.94) 100%),
-        url('bg_figures.png') center 20%/cover no-repeat fixed;
+        url('bg_figures.png') 50% 35%/cover no-repeat;
+      animation: bgDrift4 24s ease-in-out infinite;
     }
 
     .figures-grid {
@@ -743,7 +757,8 @@
     #lore {
       background:
         linear-gradient(180deg, rgba(4,2,1,0.78) 0%, rgba(6,3,1,0.68) 40%, rgba(4,2,1,0.88) 100%),
-        url('bg_lore.png') center 40%/cover no-repeat fixed;
+        url('bg_lore.png') 50% 40%/cover no-repeat;
+      animation: bgDrift5 30s ease-in-out infinite;
     }
 
     .lore-grid {
@@ -834,7 +849,8 @@
     #sizes {
       background:
         linear-gradient(180deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.80) 50%, rgba(8,8,8,0.94) 100%),
-        url('bg_sizes.png') center 40%/cover no-repeat fixed;
+        url('bg_sizes.png') 50% 40%/cover no-repeat;
+      animation: bgDrift6 26s ease-in-out infinite;
     }
     .size-chart {
       margin-top: 1.5rem;
@@ -924,7 +940,8 @@
     #quiz {
       background:
         linear-gradient(180deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.78) 50%, rgba(8,8,8,0.92) 100%),
-        url('bg_quiz.png') center 40%/cover no-repeat fixed;
+        url('bg_quiz.png') 50% 40%/cover no-repeat;
+      animation: bgDrift7 23s ease-in-out infinite;
     }
     .quiz-wrap { max-width: 720px; margin: 0 auto; }
     .quiz-question-block {
@@ -1148,7 +1165,7 @@
 
   <!-- NAVBAR -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo"><span>SNK</span></a>
+    <a href="#hero" class="nav-logo"><span>AoT</span></a>
     <ul class="nav-links">
       <li><a href="#history" id="nav-history">HISTORY</a></li>
       <li><a href="#titans" id="nav-titans">TITANS</a></li>
@@ -1161,7 +1178,7 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-corner tl">[ SNK Archive ]<br>Paradis Island — Wall Maria</div>
+    <div class="hero-corner tl">[ AoT Archive ]<br>Paradis Island — Wall Maria</div>
     <div class="hero-corner tr">Year 854<br>[ Status: Active ]</div>
     <div class="hero-corner bl">Clearance: Alpha<br>Eyes Only</div>
     <div class="hero-corner br">Files Unlocked: 9/9<br>[ Do Not Copy ]</div>
@@ -1991,7 +2008,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo"><span>SNK</span> Archive</div>
+    <div class="footer-logo"><span>AoT</span> Archive</div>
     <p class="footer-sub">[ Survey Corps — Restricted Files — Beyond the Walls ]</p>
     <p class="footer-motto">"Dedicate Your Heart."</p>
     <nav class="footer-links">
@@ -2003,7 +2020,7 @@
       <a href="#sizes">Scale</a>
       <a href="#quiz">Quiz</a>
     </nav>
-    <p class="footer-copy">SNK Archive — Classified — Year 854 — All intel for educational purposes</p>
+    <p class="footer-copy">AoT Archive — Classified — Year 854 — All intel for educational purposes</p>
   </footer>
 
   <script>

@@ -1010,33 +1010,65 @@
     .quiz-result {
       display: none;
       text-align: center;
-      padding: 3rem 2rem;
-      background: var(--card);
-      border: 1px solid var(--gold);
       margin-top: 2rem;
-      animation: fadeUp 0.6s ease;
+      border: 1px solid var(--gold);
+      overflow: hidden;
+      position: relative;
+      animation: fadeUp 0.7s ease;
     }
     .quiz-result.show { display: block; }
+    .rank-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+    }
+    .rank-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      animation: kenBurns 8s ease-out forwards;
+      filter: brightness(0.65);
+    }
+    @keyframes kenBurns {
+      0%   { transform: scale(1.12) translateY(4px); }
+      100% { transform: scale(1) translateY(0); }
+    }
+    .rank-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(8,8,8,0.95) 100%);
+    }
+    .result-inner {
+      background: var(--card);
+      padding: 2rem 2rem 2.5rem;
+      border-top: none;
+    }
     .result-score {
       font-family: var(--font-display);
       font-size: 5rem;
       color: var(--gold);
       letter-spacing: 0.1em;
       line-height: 1;
+      text-shadow: 0 0 30px rgba(200,169,110,0.4);
     }
     .result-rank {
-      font-family: var(--font-display);
+      font-family: var(--font-heading);
       font-size: 2rem;
-      letter-spacing: 0.15em;
+      font-weight: 700;
+      letter-spacing: 0.2em;
       color: var(--text);
-      margin: 1rem 0 0.5rem;
+      margin: 0.8rem 0 0.5rem;
+      text-transform: uppercase;
     }
     .result-desc {
       font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--muted);
-      letter-spacing: 0.2em;
-      line-height: 1.7;
+      letter-spacing: 0.18em;
+      line-height: 1.8;
+      white-space: pre-line;
     }
     .quiz-retry {
       background: transparent;
@@ -1943,10 +1975,16 @@
         <button class="quiz-submit" id="quizSubmit" disabled>[ Submit Intel ]</button>
 
         <div class="quiz-result" id="quizResult">
-          <div class="result-score" id="resultScore"></div>
-          <div class="result-rank" id="resultRank"></div>
-          <div class="result-desc" id="resultDesc"></div>
-          <button class="quiz-retry" onclick="resetQuiz()">[ Retry Mission ]</button>
+          <div class="rank-img-wrap">
+            <img class="rank-img" id="rankImg" src="" alt="rank" />
+            <div class="rank-img-overlay"></div>
+          </div>
+          <div class="result-inner">
+            <div class="result-score" id="resultScore"></div>
+            <div class="result-rank" id="resultRank"></div>
+            <div class="result-desc" id="resultDesc"></div>
+            <button class="quiz-retry" onclick="resetQuiz()">[ Retry Mission ]</button>
+          </div>
         </div>
 
       </div>
@@ -2058,22 +2096,32 @@
         const score = Object.values(answers).filter(Boolean).length;
         const result = document.getElementById('quizResult');
         document.getElementById('resultScore').textContent = score + ' / ' + totalQ;
-        let rank, desc;
+        let rank, desc, img;
         if (score <= 3) {
           rank = 'Civilian';
           desc = 'You know nothing beyond the walls.\nYour memories may have been wiped.';
+          img = 'rank_civilian.png';
         } else if (score <= 6) {
           rank = 'Garrison Soldier';
           desc = 'You\'ve read the basics.\nYou can hold a wall, but not much else.';
+          img = 'rank_garrison.png';
         } else if (score <= 8) {
           rank = 'Survey Corps';
           desc = 'You\'ve been beyond the walls.\nYou carry the truth with you.';
+          img = 'rank_survey.png';
         } else {
           rank = 'Humanity\'s Strongest';
           desc = 'You know the truth of this world.\nDedicate your heart.';
+          img = 'rank_strongest.png';
         }
         document.getElementById('resultRank').textContent = rank;
         document.getElementById('resultDesc').textContent = desc;
+        // Set image + re-trigger Ken Burns animation
+        const rankImg = document.getElementById('rankImg');
+        rankImg.src = img;
+        rankImg.style.animation = 'none';
+        rankImg.offsetHeight; // force reflow
+        rankImg.style.animation = 'kenBurns 8s ease-out forwards';
         result.classList.add('show');
         this.disabled = true;
         result.scrollIntoView({ behavior: 'smooth', block: 'center' });

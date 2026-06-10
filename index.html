@@ -844,6 +844,150 @@
     @media (max-width: 450px)  { .lore-grid { grid-template-columns: 1fr; } }
 
     /* ============================================================
+       THE THREE WALLS
+    ============================================================ */
+    #walls {
+      background:
+        linear-gradient(180deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.72) 50%, rgba(8,8,8,0.90) 100%),
+        url('bg_walls.png') 50% 40%/cover no-repeat;
+      animation: bgDrift4 28s ease-in-out infinite;
+    }
+    .walls-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .wall-card {
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--wall-color, var(--gold));
+      background: rgba(14,13,11,0.85);
+      padding: 2rem 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+    }
+    .wall-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+    .wall-name {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--wall-color, var(--gold));
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .wall-sub {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .wall-height {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--wall-color, var(--gold));
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .wall-height-label {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      color: var(--muted);
+      letter-spacing: 0.3em;
+      margin-bottom: 1rem;
+    }
+    .wall-desc {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    .wall-status {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      padding: 3px 10px;
+      border: 1px solid;
+      text-transform: uppercase;
+    }
+    .wall-status.fallen {
+      color: var(--red-bright);
+      border-color: var(--red-bright);
+    }
+    .wall-status.breached {
+      color: #d4a844;
+      border-color: #d4a844;
+    }
+    .wall-status.standing {
+      color: #4a7c59;
+      border-color: #4a7c59;
+    }
+    /* Key image block */
+    .key-block {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      background: rgba(14,13,11,0.88);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      padding: 2rem 2.5rem;
+      margin-top: 0.5rem;
+    }
+    .key-img-wrap {
+      flex-shrink: 0;
+      width: 220px;
+      height: 160px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .key-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.85) sepia(0.2);
+      transition: filter 0.4s;
+    }
+    .key-img-wrap:hover img { filter: brightness(1) sepia(0); }
+    .key-text-wrap {
+      flex: 1;
+    }
+    .key-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--gold);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .key-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .key-body {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-weight: 500;
+    }
+    @media (max-width: 900px) {
+      .walls-grid { grid-template-columns: 1fr; }
+      .key-block { flex-direction: column; }
+      .key-img-wrap { width: 100%; height: 200px; }
+    }
+
+    /* ============================================================
        TITAN SIZE COMPARISON
     ============================================================ */
     #sizes {
@@ -1171,6 +1315,7 @@
       <li><a href="#titans" id="nav-titans">TITANS</a></li>
       <li><a href="#factions" id="nav-factions">FACTIONS</a></li>
       <li><a href="#figures" id="nav-figures">FIGURES</a></li>
+      <li><a href="#walls" id="nav-walls">WALLS</a></li>
       <li><a href="#lore" id="nav-lore">LORE</a></li>
       <li><a href="#quiz" id="nav-quiz">QUIZ</a></li>
     </ul>
@@ -1782,6 +1927,58 @@
           <div class="lore-text"><span class="lore-text-label">Karl Fritz's Vow</span>Karl Fritz made a vow renouncing war, binding the Founding Titan's power. Eren broke it because he's not of royal blood and doesn't carry the vow's restriction.</div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- THE THREE WALLS -->
+  <section id="walls">
+    <div class="container">
+      <div class="fade-in">
+        <span class="classified-stamp">Structural Analysis</span>
+        <h2 class="section-header">The Three Walls</h2>
+        <p class="section-subtitle">// They weren't protection. They were a prison. And the secret inside them changed everything.</p>
+      </div>
+      <div class="walls-grid">
+
+        <div class="wall-card fade-in" style="--wall-color:#8B1A1A">
+          <div class="wall-name">Wall Maria</div>
+          <div class="wall-sub">Outermost Wall — First Line of Defense</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">The outermost wall. Home to hundreds of thousands of people, including the Yeager family in Shiganshina. It fell in Year 845 when the Colossal Titan breached the outer gate and the Armored Titan shattered the inner gate. Humanity lost nearly a third of its territory in a single day.</p>
+          <span class="wall-status fallen">Breached — Year 845</span>
+        </div>
+
+        <div class="wall-card fade-in" style="--wall-color:#d4a844">
+          <div class="wall-name">Wall Rose</div>
+          <div class="wall-sub">Middle Wall — Refuge After Maria</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">Millions of Maria survivors flooded Wall Rose after the fall. Five years later, titans appeared inside it — transformed from Ragako village residents by Zeke's Beast Titan power. The wall itself was never breached, but humanity's sense of safety collapsed a second time.</p>
+          <span class="wall-status breached">Infiltrated — Year 850</span>
+        </div>
+
+        <div class="wall-card fade-in" style="--wall-color:#4a7c59">
+          <div class="wall-name">Wall Sina</div>
+          <div class="wall-sub">Innermost Wall — Seat of Power</div>
+          <div class="wall-height">50m</div>
+          <div class="wall-height-label">Estimated Height</div>
+          <p class="wall-desc">The innermost wall. Home to the royal family, the Military Police, and the wealthiest Eldians. Most never saw a titan in their lives. When the truth came out — that the walls themselves were filled with colossal titans in hardened form — their entire world cracked.</p>
+          <span class="wall-status standing">Standing — Intact</span>
+        </div>
+
+      </div>
+
+      <div class="key-block fade-in">
+        <div class="key-img-wrap">
+          <img src="grisha_key.png" alt="The key to the basement — Grisha Yeager" />
+        </div>
+        <div class="key-text-wrap">
+          <div class="key-label">Evidence — Item 001 — Shiganshina District</div>
+          <div class="key-title">Grisha's Key to the Basement</div>
+          <p class="key-body">Grisha Yeager wore this key around his neck every day and told no one what it opened. On the night Wall Maria fell, he pressed it into Eren's hands and begged him never to forget the basement. It took four years of war to reach it. What they found inside didn't just explain Grisha's past — it broke the entire foundation of what Paradis believed about the world. Memory. History. Identity. All of it was inside that one locked room.</p>
+        </div>
       </div>
     </div>
   </section>

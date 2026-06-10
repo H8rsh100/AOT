@@ -1,63 +1,177 @@
-# 🏰 Paradis Island Tactical Archive
+# ⚔️ SHINGEKI NO KYOJIN — The Complete Lore Encyclopedia
 
-`PARADIS_OS V4.81 — CLASSIFIED DOSSIER — SURVEY CORPS INTEL UPLINK`
+<div align="center">
 
-Welcome to the **Paradis Island Tactical Archive**, a highly immersive, interactive terminal and intelligence briefing dossier built on the lore of *Attack on Titan*. Designed to resemble a restricted military mainframe, this web application serves as a central intelligence database documenting the history, titans, factions, campaigns, and events beyond the walls.
+![Status](https://img.shields.io/badge/STATUS-ACTIVE-red?style=for-the-badge&labelColor=0e0d0b&color=801414)
+![Version](https://img.shields.io/badge/VERSION-V4.81-gold?style=for-the-badge&labelColor=0e0d0b&color=c8a96e)
+![Clearance](https://img.shields.io/badge/CLEARANCE-ALPHA%20EYES%20ONLY-darkred?style=for-the-badge&labelColor=0e0d0b&color=4a1010)
+![Tech](https://img.shields.io/badge/BUILT%20WITH-HTML%20CSS%20JS-white?style=for-the-badge&labelColor=0e0d0b)
 
----
+</div>
 
-## 🖥️ System Features
+<br/>
 
-### 1. 📟 Interactive Tactical Console
-- A functional terminal uplink recreating the retro-futuristic green CRT monitor aesthetic complete with scanline filters, flickering, and output streams.
-- **Commands:** Run preset commands (`help`, `status`, `campaigns`, `wall_status`, `rumbling`, `clear`) or decrypt restricted intelligence logs (`decrypt basement`, `decrypt path`, `scout erwin`, `scout levi`, `scout hange`, `inject_serum`) to dynamically display photographs, intelligence descriptions, and visual triggers directly on the terminal output.
+> *"They took everything. Our land. Our history. Our names.*
+> *One boy remembered. One boy saw it all coming."*
 
-### 2. 🧬 The Nine Titans Catalog
-- An interactive catalog detailing the 9 major titan forms.
-- **Grayscale to Color Glow & Instant Flip:** Placing the cursor over a card instantly switches its black-and-white face to a glowing color image while triggering an immediate 3D card flip to reveal its technical specifications, inheritors, and attributes.
-
-### 3. ⏳ Historical Timeline & Walls Analysis
-- A scroll-triggered, responsive chronicle detailing key historical milestones from Ymir Fritz gaining the titan power to the declaration of war.
-- A structural layout analysis of the three concentric walls (Maria, Rose, Sina) and Grisha Yeager's basement key artifact.
-
-### 4. 🌋 The Rumbling & Fullscreen Onslaught Overlay
-- An interactive cataclysm simulator that begins with a global casualty calculator counting up to **1.6 billion casualties** (80.0% of the human population outside Paradis).
-- Upon completion of the countdown, the screen transitions into a **fullscreen horror overlay** displaying the true horror of the onslaught (`hor.jpg`), typing out Eren Yeager's final declaration of global extinction, with smooth fade transitions and optimized GPU rendering.
-
-### 5. 📊 Scale of Terror & Intelligence Test
-- A dynamic, animated bar chart comparing the relative heights of the different Titan forms—ranging from Pure Titans (3-15m) to Eren's Founding Titan form (200m+).
-- An interactive 10-question evaluation quiz that scores the user and ranks them into military divisions (Civilian, Garrison, Survey Corps, or Humanity's Strongest) with specific badge overlays.
+<br/>
 
 ---
 
-## 🛠️ Tech Stack
+## 🏰 WHAT IS THIS
 
-- **Frontend Core:** HTML5, CSS3 (Vanilla), ES6+ JavaScript.
-- **Design Principles:** Dark cyberpunk/terminal aesthetic, custom typography (monospace, modern sans-serif), CSS filters (contrast/brightness overlays), keyframe animations, 3D rotations, and responsive media queries.
-- **Deployment Platform:** Streamlit Python web-server wrapping for seamless containerized cloud deployment.
+**Shingeki No Kyojin — The AoT Encyclopedia** is a cinematic, lore-first encyclopedia for *Attack on Titan* — built for people who've watched every episode, read every chapter, and still want to go deeper.
+
+This is not a fan wiki. This is not a marketing page.
+
+This is a **classified military intelligence archive** — designed to feel like you broke into a Marleyan database and found everything they tried to hide. Every section is a dossier. Every interaction has weight. Every pixel was a deliberate choice.
+
+If you're a new watcher, turn back. **Full spoilers. No mercy.**
 
 ---
 
-## 🚀 Deployment
+## ⚡ FEATURES
 
-### Option A: GitHub Pages (Recommended)
-Since this is a client-side HTML/JS/CSS application, it runs natively on any web server:
-1. Push this repository to your GitHub account.
-2. In the repository settings, go to **Pages**.
-3. Under **Build and deployment**, select the `main` branch as the source and root `/` folder, then click **Save**.
-4. GitHub will automatically host and deploy the site.
+### 🗂️ The Archive Sections
+| Section | What's Inside |
+|---|---|
+| **THE FALL OF HISTORY** | Full AoT timeline from Year 1 to the Rumbling — alternating dossier cards with classified stamps |
+| **THE THREE WALLS** | Wall Maria, Rose & Sina — full lore breakdown with aerial map backdrop |
+| **THE NINE POWERS** | All 9 titan shifters — flip cards with grayscale-to-color hover glow, inheritor chains, danger ratings |
+| **POWERS AT WAR** | All major factions — Survey Corps, Warriors, Yeagerists, Tyburs and more |
+| **THE SOLDIERS** | Character dossiers — arc summaries, affiliations, and fates. Brutally honest. |
+| **CRITICAL CAMPAIGNS** | The battles that changed everything — Shiganshina, Liberio, the Rumbling |
+| **THE CONSOLE** | A fully functional CRT terminal — type commands to decrypt classified intel |
+| **CLASSIFIED INTEL** | Dark lore facts most watchers missed — click to declassify |
+| **SCALE OF TERROR** | Animated titan size comparison chart — from 3m pure titans to Eren's 200m+ final form |
+| **THE RUMBLING** | A fullscreen horror sequence — Eren's face, 1.6 billion casualties, the typewriter quote |
+| **TEST YOUR INTEL** | 10-question lore quiz with military rank assignment at the end |
 
-### Option B: Streamlit Cloud (Python Wrapper)
-If you wish to deploy this on **Streamlit Cloud**:
-1. Connect your GitHub repository to Streamlit Cloud.
-2. Set the main entrypoint file to **`app.py`**.
-3. Streamlit will launch the Python app, spin up a background web server to serve the HTML/JS assets, and render the archive perfectly inside the container!
+---
 
-### Option C: Run Locally
-You can run the site locally in two ways:
-- **Simple HTML:** Double-click `index.html` to open it in any browser.
-- **Streamlit Local Server:** Run the following commands in your terminal:
-  ```bash
-  pip install streamlit
-  streamlit run app.py
-  ```
+### 🎮 Interactions Worth Seeing
+- **CRT Terminal Console** — real command parser with `help`, `status`, `decrypt basement`, `decrypt path` and more. Decrypting triggers image embeds and classified documents inside the terminal.
+- **Nine Titans Flip Cards** — hover instantly de-greys the titan art with a color glow, then after exactly 500ms the card flips to show full specs. The timing is deliberate.
+- **The Rumbling Onslaught** — click the widget, the screen shakes, a cubic ease-out counter races to **1,600,000,000**, then a fullscreen horror overlay takes over with Eren's face and a typewriter speech. One of a kind interaction.
+- **Scroll-triggered Timeline** — the history line draws itself as you scroll down through the years.
+- **Scale Chart** — titan height bars animate in with a staggered wave the moment the section hits your viewport.
+- **Declassify Cards** — click any lore fact card to remove the redaction stamp and reveal the truth.
+
+---
+
+## 🎨 DESIGN SYSTEM
+
+Built on a **restricted military tactical intelligence** aesthetic. Cold, dark, deliberate.
+
+```
+Background:   #050505   — absolute dark
+Cards:        #0e0d0b   — barely visible surface
+Gold:         #c8a96e   — Survey Corps authority
+Red:          #801414   — danger, combat, blood
+Bright Red:   #ff1a1a   — critical alarms, horror
+Text:         #e2dcd0   — warm parchment readability
+```
+
+**Typography:**
+- `Outfit` — geometric command-center headers
+- `JetBrains Mono` — terminal logs, telemetry data, classified tags
+
+---
+
+## 🛠️ TECH STACK
+
+Pure vanilla. No frameworks. No dependencies. Just the fundamentals pushed to their limit.
+
+```
+HTML5       — semantic structure
+CSS3        — custom properties, keyframes, transforms, GPU compositing
+JavaScript  — DOM manipulation, requestAnimationFrame, IntersectionObserver
+Google Fonts — Outfit + JetBrains Mono
+```
+
+### Under The Hood
+- `requestAnimationFrame` + cubic ease-out curve for the 1.6B count-up animation
+- `IntersectionObserver` for scroll-triggered bar chart with 80ms stagger
+- `will-change: opacity` on the horror overlay for GPU-layer isolation — zero frame drops
+- CRT scanline effect via `repeating-linear-gradient` at 3px intervals
+- Phosphor flicker via high-frequency `opacity` keyframe (0.15s infinite)
+- Dual-phase hover timing on titan cards — instant color, 500ms flip delay
+- Fixed height pre-allocation on all dynamic containers — no layout shifts
+
+---
+
+## 🚀 GETTING STARTED
+
+No build step. No npm install. No config.
+
+```bash
+git clone https://github.com/H8rsh100/aot-encyclopedia
+cd aot-encyclopedia
+# open index.html in your browser
+```
+
+Or just visit the live site → **[GitHub Pages Link]**
+
+---
+
+## 📟 TERMINAL COMMANDS
+
+Open the **THE CONSOLE** section and try these:
+
+```
+help           → lists all available commands
+status         → current archive operational status  
+campaigns      → lists critical military campaigns
+wall_status    → structural integrity of all three walls
+decrypt basement → unlocks Grisha's basement files
+decrypt path   → reveals the path of the titans
+rumbling       → initiates the onslaught sequence
+clear          → wipes the terminal output
+```
+
+---
+
+## 🎖️ QUIZ RANKS
+
+Complete the 10-question intel evaluation to receive your rank:
+
+| Score | Rank |
+|---|---|
+| 0–3 | Civilian — *You know nothing beyond the walls* |
+| 4–6 | Garrison Soldier — *You've read the basics* |
+| 7–8 | Survey Corps — *You've been beyond the walls* |
+| 9–10 | Humanity's Strongest — *You know the truth of this world* |
+
+---
+
+## 📁 PROJECT STRUCTURE
+
+```
+aot-encyclopedia/
+├── index.html          # entire site — single file
+├── assets/
+│   ├── hor.jpg         # Eren horror overlay
+│   └── ...             # titan art, wall maps, backgrounds
+└── README.md
+```
+
+---
+
+## 🩸 BUILT BY
+
+Made with obsession, lore knowledge, and zero sleep.
+
+> *"If you win, you live. If you lose, you die. If you don't fight, you can't win."*
+> — Eren Yeager
+
+---
+
+<div align="center">
+
+**[ SNK ARCHIVE — CLASSIFIED ]**
+
+*Dedicate Your Heart.*
+
+![Footer](https://img.shields.io/badge/SURVEY%20CORPS-RESTRICTED%20ARCHIVE%20YEAR%20854-red?style=for-the-badge&labelColor=050505&color=801414)
+
+</div>

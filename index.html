@@ -2997,16 +2997,32 @@
     function initTitanCardHovers() {
       const cards = document.querySelectorAll('.titan-card');
       cards.forEach(card => {
+        let hoverTimeout = null;
+
         card.addEventListener('mouseenter', () => {
-          // Immediately apply the color, glow style, and flip card
+          // Immediately apply the color and glow style via active-hover class
           card.classList.add('active-hover');
-          card.classList.add('flipped');
+          
+          // Clear any existing timeout
+          if (hoverTimeout) clearTimeout(hoverTimeout);
+          
+          // Set a timeout to flip the card after 0.5 seconds (500ms)
+          hoverTimeout = setTimeout(() => {
+            if (card.classList.contains('active-hover')) {
+              card.classList.add('flipped');
+            }
+          }, 500);
         });
 
         card.addEventListener('mouseleave', () => {
           // Immediately reset both color hover and flipped state
           card.classList.remove('active-hover');
           card.classList.remove('flipped');
+          
+          if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+            hoverTimeout = null;
+          }
         });
       });
     }

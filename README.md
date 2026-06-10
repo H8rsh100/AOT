@@ -105,8 +105,8 @@ Google Fonts — Outfit + JetBrains Mono
 No build step. No npm install. No config.
 
 ```bash
-git clone https://github.com/H8rsh100/aot-encyclopedia
-cd aot-encyclopedia
+git clone https://github.com/H8rsh100/AOT
+cd AOT
 # open index.html in your browser
 ```
 
